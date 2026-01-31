@@ -1,9 +1,9 @@
 using UnityEngine;
-
+using TMPro;
 /// <summary>
 /// Singleton Class. <br></br>
 /// Public methods and variables can be accessed by any object in the scene with 'GlobalManagement.instance'. <br></br>
-/// Please avoid defining behaviour here. Use this class to call methods in other management classes.
+/// Use this class to call methods in other management classes.
 /// </summary>
 public class GlobalManagement : MonoBehaviour
 {
@@ -26,6 +26,23 @@ public class GlobalManagement : MonoBehaviour
     {
         // change later
         GetComponent<PlayerData>().OnSanityChanged += (sender, value) => { GetComponent<UIManagement>().UpdateSanity(value); };
+    }
+
+    // move the next few methods to other management classes later
+    public void ShowNextDay()
+    {
+        
+    }
+    public void TaskComplete()
+    {
+
+    }
+
+
+
+    public void OnSceneSwitch()
+    {
+        GetComponent<TextManagement>().ConversationTextField = FindFirstObjectByType<TMP_Text>();
     }
 
     /// <summary>

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManagement : MonoBehaviour
 {
@@ -7,10 +8,15 @@ public class UIManagement : MonoBehaviour
     public GameObject dayProgressBar;
     private Slider sanitySlider;
     private Slider dayProgressSlider;
+
+    private bool useGameUI = true;
     void Start()
     {
-        sanitySlider = sanityBar.GetComponent<Slider>();
-        dayProgressSlider = dayProgressBar.GetComponent<Slider>();
+        if(useGameUI)
+        {
+            sanitySlider = sanityBar.GetComponent<Slider>();
+            dayProgressSlider = dayProgressBar.GetComponent<Slider>();
+        }
     }
     void Update()
     {
