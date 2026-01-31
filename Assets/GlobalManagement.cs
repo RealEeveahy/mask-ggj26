@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class GlobalManagement : MonoBehaviour
 {
+    public GameObject overlay;
     public static GlobalManagement instance { get; private set; }
     public float CurrentPlayerSanity() => GetComponent<PlayerData>().Sanity;
     private void Awake()
@@ -46,5 +47,14 @@ public class GlobalManagement : MonoBehaviour
             textManager.Hurry();
             return false;
         }
+    }
+    public void DecreaseSanity(float sanityCost)
+    {
+        GetComponent<PlayerData>().Sanity += sanityCost;
+        //if item hits the floor take sanity.
+    }
+    public void ToggleOverlay(bool state)
+    {
+        GlobalManagement.instance.overlay.SetActive(state);
     }
 }

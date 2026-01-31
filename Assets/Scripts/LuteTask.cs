@@ -1,22 +1,19 @@
 using UnityEngine;
 
-public class JuggleTask: MonoBehaviour,ITask
+public class LuteTask : MonoBehaviour, ITask
 {
-    public float CurrentDuration { get; set; }
+    //float duration;
     public float Speed { get; set; }
     public float Duration { get; set; }
     public bool TaskComplete { get; set; }
     public GameObject View { get; set; }
     public void Render()
     {
-        
+
         // Set background active?
-    } 
+    }
     void Start()
     {
-        CurrentDuration = 0f;
-        
-        
         //Duration = duration;
     }
     public void DoAction()
@@ -27,11 +24,6 @@ public class JuggleTask: MonoBehaviour,ITask
     // Update is called once per frame
     void Update()
     {
-        CurrentDuration += Time.deltaTime;
-        if (CurrentDuration >= Duration)
-        {
-            TaskComplete = true;
-            Day.Equals=
-        }
+
     }
 }
