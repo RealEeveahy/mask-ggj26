@@ -15,7 +15,7 @@ public class LuteBehaviour : MonoBehaviour
     void Start()
     {
         task.CurrentDuration = 0f;
-        spawnPosition = transform;
+        //spawnPosition = transform;
         StartCoroutine(StartTask());
     }
     void Update()

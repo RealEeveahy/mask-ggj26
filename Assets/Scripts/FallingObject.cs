@@ -33,7 +33,7 @@ public class FallingObject : MonoBehaviour
         {
             //Destroy(this.gameObject);
             GetComponentInChildren<SpriteRenderer>().enabled =false;
-            transform.position = creatorObject.transform.position;
+            
             if (busy == false && this.tag == "Pin")
             {
                 // Play pin dropping audio.
@@ -54,6 +54,7 @@ public class FallingObject : MonoBehaviour
     {
         busy = true;
         yield return new WaitForSeconds(respawnTime);
+        transform.position = creatorObject.transform.position;
         GetComponentInChildren<SpriteRenderer>().enabled = true;
         rigidObject.linearVelocity = Vector3.zero;
         busy = false;
@@ -80,5 +81,6 @@ public class FallingObject : MonoBehaviour
     {
         Debug.Log("FallingObject.PlayNote");
         // Call Audio manager to play the note.
+        
     }
 }
