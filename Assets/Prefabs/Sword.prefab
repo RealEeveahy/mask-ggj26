@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1163746333737142149}
   - component: {fileID: -7005183397033720566}
   m_Layer: 0
-  m_Name: Note
+  m_Name: Sword
   m_TagString: Note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,7 +199,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -6184957895236375650, guid: 3517e39d658b4524380bdb00d60b1dff, type: 3}
+  m_Sprite: {fileID: -7612927377675235331, guid: 30ee7707c2baf534891fbdf20ed2ee39, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

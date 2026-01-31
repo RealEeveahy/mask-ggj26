@@ -61,6 +61,10 @@ public class Day
                 LuteTask luteTask = new LuteTask();
                 tasks.Add(luteTask);
                 return luteTask;
+            case 2:
+                WheelTask wheelTask = new WheelTask();
+                tasks.Add(wheelTask);
+                return wheelTask;
             default:
                 JuggleTask defaultTask = new JuggleTask();
                 tasks.Add(defaultTask);
