@@ -1,15 +1,16 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 public class DayManager : MonoBehaviour
 {
     public static DayManager instance;
     public int currentDay= 1;
     public int numberOfDays = 5;
     public List<Day> days = new List<Day>();
-    public Phase currentPhase;
     public bool currentPhaseComplete = false;
     public bool currentDayComplete = false;
+    public PlayerData player;
 
     void Awake()
     {
@@ -27,13 +28,15 @@ public class DayManager : MonoBehaviour
 
     void Start()
     {
-        currentPhase = Phase.Story;
+        player = GameObject.Find("Player").GetComponent<PlayerData>();
+        GlobalManagement.instance.gamePhase = GlobalManagement.Phase.Story;
         for (int i = 0; i < numberOfDays; i++)
         {
             days.Add(new Day(i));
         }
     }
 
+    // move to events rather than checks
     void Update()
     {
         if (currentPhaseComplete)
@@ -44,12 +47,11 @@ public class DayManager : MonoBehaviour
                 return;
             }
             //SwitchPhase();
-            Debug.Log($"{currentPhase}");
+            Debug.Log($"{GlobalManagement.instance.gamePhase}");
         }
     }
     /*void SwitchPhase()
     {
-        currentPhaseComplete = false;
         switch (currentPhase)
         {
             case Phase.Story:
@@ -64,8 +66,7 @@ public class DayManager : MonoBehaviour
     void FinishDay()
     {
         currentDay++;
-        currentPhase = Phase.Story;
+        GlobalManagement.instance.gamePhase = GlobalManagement.Phase.Story;
         currentPhaseComplete = false;
     }
 }
-public enum Phase { Story , Minigame}
