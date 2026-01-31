@@ -5,11 +5,7 @@ using UnityEngine.InputSystem;
 
 public class JuggleTask: ITask
 {
-    public List<GameObject> pins = new List<GameObject>();
-    public GameObject pinPrefab = null;
-    public Transform spawnPosition = null;
-    public float spawnTime = 1f;
-    public int numberOfPins = 3;
+    public GameObject prefab = Resources.Load<GameObject>("Juggling Task");
     public float CurrentDuration { get; set; }
     public float Speed { get; set; }
     public float Duration { get; set; }
@@ -20,54 +16,8 @@ public class JuggleTask: ITask
         
         // Set background active?
     } 
-    void Start()
-    {
-        CurrentDuration = 0f;
-        spawnPosition = ;
-        StartTask());
-    }
     public void DoAction()
     {
         //if item is clicked use an upward force to keep object in the air.
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        CurrentDuration += Time.deltaTime;
-        if (CurrentDuration >= Duration)
-        {
-            TaskComplete = true;
-            //Day.Equals=
-        }
-    }
-    public GameObject CreatePin()
-    {
-        Debug.Log("JuggleTask.CreatePin()");
-        if (pinPrefab == null)
-        {
-            Debug.Log("No pin prefab assigned");
-            return null;
-        }
-        GameObject instantiatedPin = Instantiate(pinPrefab, spawnPosition);
-        instantiatedPin.transform.SetParent(transform, false);
-        instantiatedPin.GetComponent<FallingObject>().creatorObject = this.gameObject;
-        return instantiatedPin;
-    }
-    IEnumerator StartTask()
-    {
-        while (pins.Count < numberOfPins)
-        {
-            yield return new WaitForSeconds(spawnTime);
-            pins.Add(CreatePin());
-        }
-    }
-    public void OnClick()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero);
-        if (hit)
-        {
-            hit.transform.gameObject.SendMessage("Throw");
-        }
     }
 }
