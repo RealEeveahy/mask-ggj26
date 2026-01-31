@@ -31,7 +31,7 @@ public class JuggleTask: MonoBehaviour,ITask
         if (CurrentDuration >= Duration)
         {
             TaskComplete = true;
-            Day.Equals=
+            //Day.Equals=
         }
     }
 }
