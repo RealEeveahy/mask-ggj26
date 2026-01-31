@@ -1,5 +1,8 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using System.Collections;
+
 /// <summary>
 /// Singleton Class. <br></br>
 /// Public methods and variables can be accessed by any object in the scene with 'GlobalManagement.instance'. <br></br>
@@ -9,6 +12,10 @@ public class GlobalManagement : MonoBehaviour
 {
     public GameObject overlay;
     public static GlobalManagement instance { get; private set; }
+
+    // moved to global so that any class may condition behaviour for state
+    public enum Phase { Story, Minigame }
+    public Phase gamePhase; 
     public float CurrentPlayerSanity() => GetComponent<PlayerData>().Sanity;
     private void Awake()
     {
@@ -31,13 +38,12 @@ public class GlobalManagement : MonoBehaviour
     // move the next few methods to other management classes later
     public void ShowNextDay()
     {
-        
+        StartCoroutine(LoadScene("SampleScene"));
     }
     public void TaskComplete()
     {
 
     }
-
 
 
     public void OnSceneSwitch()
@@ -73,5 +79,17 @@ public class GlobalManagement : MonoBehaviour
     public void ToggleOverlay(bool state)
     {
         GlobalManagement.instance.overlay.SetActive(state);
+    }
+    IEnumerator LoadScene(string sceneName)
+    {
+        AsyncOperation ao = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+        while (!ao.isDone)
+        {
+            yield return null;
+        }
+
+        // code to run after scene is loaded
+
+        OnSceneSwitch();
     }
 }
