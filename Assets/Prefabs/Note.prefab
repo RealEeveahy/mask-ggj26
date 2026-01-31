@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1163746333737142149}
   - component: {fileID: -7005183397033720566}
   m_Layer: 0
-  m_Name: Juggling Pin
-  m_TagString: Pin
+  m_Name: Note
+  m_TagString: Note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,7 +97,7 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 3.5, y: 4.46}
+  m_Size: {x: 3, y: 4.46}
   m_Direction: 0
 --- !u!114 &-7005183397033720566
 MonoBehaviour:
@@ -116,7 +116,7 @@ MonoBehaviour:
   respawnTime: 2
   rigidObject: {fileID: 0}
   busy: 0
-  throwStrength: 700
+  throwStrength: 0
 --- !u!1 &3456910762849481671
 GameObject:
   m_ObjectHideFlags: 0

@@ -363,6 +363,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 450370292137659106, guid: a05789be8c1eba34c9ac98fca3241a64, type: 3}
+      propertyPath: m_Constraints
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1530307053033955160, guid: a05789be8c1eba34c9ac98fca3241a64, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -403,9 +407,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2144398265782171859, guid: a05789be8c1eba34c9ac98fca3241a64, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637779807924172078, guid: a05789be8c1eba34c9ac98fca3241a64, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6571526339337569505, guid: a05789be8c1eba34c9ac98fca3241a64, type: 3}
       propertyPath: m_Name
       value: Juggling Task
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973351922114718886, guid: a05789be8c1eba34c9ac98fca3241a64, type: 3}
+      propertyPath: m_Constraints
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

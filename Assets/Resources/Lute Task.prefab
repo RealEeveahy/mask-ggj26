@@ -654,7 +654,7 @@ GameObject:
   - component: {fileID: 5673240750382454583}
   - component: {fileID: 4682181945144686036}
   m_Layer: 0
-  m_Name: Juggling Task
+  m_Name: Lute Task
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

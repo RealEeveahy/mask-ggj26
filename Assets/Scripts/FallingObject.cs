@@ -34,17 +34,35 @@ public class FallingObject : MonoBehaviour
             //Destroy(this.gameObject);
             GetComponentInChildren<SpriteRenderer>().enabled =false;
             transform.position = creatorObject.transform.position;
-            if (busy == false)
+            if (busy == false && this.tag == "Pin")
             {
+                // Play pin dropping audio.
                 StartCoroutine(RespawnPin());
             }
-            //GlobalManagement.instance.DecreaseSanity(sanityCost); UNCOMMENT OUT WHEN IN THE GAME
+            GlobalManagement.instance.DecreaseSanity(sanityCost);
+            if (busy == false && this.tag == "Note")
+            {
+                // Play pin dropping audio.
+                int randomn = Random.Range(1, 4);
+                Vector3 newVector = new Vector3(randomn, 0,0);
+                transform.position = transform.position + newVector;
+                StartCoroutine(RespawnNote());
+            }
         }
     }
     IEnumerator RespawnPin()
     {
         busy = true;
         yield return new WaitForSeconds(respawnTime);
+        GetComponentInChildren<SpriteRenderer>().enabled = true;
+        rigidObject.linearVelocity = Vector3.zero;
+        busy = false;
+    }
+    IEnumerator RespawnNote()
+    {
+        busy = true;
+        int randomn = Random.Range(1, 8);
+        yield return new WaitForSeconds(randomn/2);
         GetComponentInChildren<SpriteRenderer>().enabled = true;
         rigidObject.linearVelocity = Vector3.zero;
         busy = false;
@@ -57,5 +75,10 @@ public class FallingObject : MonoBehaviour
         Vector2 randomnVector = new Vector2(randomnX, randomnY);
         rigidObject.AddForce(Vector2.up *throwStrength + randomnVector);
         rigidObject.AddTorque(randomnX);// * Time.fixedDeltaTime);
+    }
+    public void PlayNote()
+    {
+        Debug.Log("FallingObject.PlayNote");
+        // Call Audio manager to play the note.
     }
 }
