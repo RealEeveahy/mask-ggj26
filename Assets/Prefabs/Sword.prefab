@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b7c1f41ecca7824b9a632564482698c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FallingObject
-  sanityCost: 1
+  sanityCost: 0.1
   creatorObject: {fileID: 0}
   respawnTime: 2
   rigidObject: {fileID: 0}

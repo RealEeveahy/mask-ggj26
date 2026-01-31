@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 900611bd675aabc4cb823cd20d50ee0b, type: 3}
+  m_Name: GoodEndScene1
+  m_EditorClassIdentifier: Assembly-CSharp::IScene
+  sceneImage: {fileID: 9083969447635318612, guid: d05bddff1fbd2494fa3f652b0becac49, type: 3}
+  messages:
+  - After the party word soon spread of my work as a court jester.
+  - Mostly thanks to the King and Queen, and the high praises they had sung of me.
+  - "But it wasn\u2019t the words alone from the royal duo that was enough."
+  - The people who were there, and saw my performance with their own two eyes, also
+    conversed with the kingdom.
+  - And the kingdoms beyond this one.
+  - Even the ones beyond them, too!
+  - When the King and Queen allowed it, I became a travelling jester of sorts.
+  - I was booked months in advance by other Kings and Queens, and many of the locals,
+    who wished to see me perform.
+  - There was this feeling like I had more meaning to my life now that I could put
+    on a good performance for all to see.
+  - And, instead of being cooped up in the same dingy kingdom, I could now travel
+    the world!
+  - "While it was sad that I couldn\u2019t see much of my family because of how much
+    I worked now."
+  - But knowing that they were safe, and living a comfortable life, was enough to
+    keep me happy.

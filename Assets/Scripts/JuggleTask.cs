@@ -10,8 +10,9 @@ public class JuggleTask: ITask
     public float Speed { get; set; }
     public float Duration { get; set; }
     public Action Miss { get; set; }
-    public JuggleTask()
+    public JuggleTask(float duration)
     {
+        Duration = duration;
         PrefabPath = "Juggling Task";
     }
 }

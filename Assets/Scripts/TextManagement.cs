@@ -4,10 +4,11 @@ using TMPro;
 public class TextManagement : MonoBehaviour
 {
     bool busy = false;
-    public float timeBetweenPrints = 0.05f;
+    float timeBetweenPrints = 0.01f;
     private float _printTime;
     public bool isBusy { get { return busy; } }
     public TMP_Text ConversationTextField;
+    public GameObject textParent;
     private void Awake()
     {
         if(ConversationTextField == null)
@@ -19,10 +20,9 @@ public class TextManagement : MonoBehaviour
     {
         // prevent overlapping calls
         busy = true;
-        if (ConversationTextField == null)
-        {
-            ConversationTextField = FindFirstObjectByType<TMP_Text>();
-        }
+        if (ConversationTextField == null) { ConversationTextField = FindFirstObjectByType<TMP_Text>(); }
+        if (textParent == null) { textParent = ConversationTextField.gameObject.transform.parent.parent.gameObject; }
+        textParent.SetActive(true);
         _printTime = timeBetweenPrints;
 
         // the current message being displayed on screen
@@ -48,5 +48,11 @@ public class TextManagement : MonoBehaviour
     public void Hurry()
     {
         _printTime = timeBetweenPrints / 2;
+    }
+
+    public void Close()
+    {
+        busy = false;
+        textParent.SetActive(false);
     }
 }

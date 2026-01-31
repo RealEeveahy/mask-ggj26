@@ -18,9 +18,7 @@ public class Day
 
         foreach (var task in tasks)
             {
-                task.Duration = 55f + 5 * (float)difficultInt;
                 task.Speed = (float)difficultInt;
-                //int randomn = Random.Range(0, 5);
             }
     }
     public void TaskStarted (ITask task)
@@ -50,23 +48,23 @@ public class Day
     }
     public ITask GenerateTask()
     {
-        int random = (Random.Range(0, 5));
+        int random = (Random.Range(3, 5)); //temporarily juggle only
         switch (random)
         {
             case 0:
-                JuggleTask juggleTask = new JuggleTask();
+                JuggleTask juggleTask = new JuggleTask(10f);
                 tasks.Add(juggleTask);
                 return juggleTask;
             case 1:
-                LuteTask luteTask = new LuteTask();
+                LuteTask luteTask = new LuteTask(10f);
                 tasks.Add(luteTask);
                 return luteTask;
             case 2:
-                WheelTask wheelTask = new WheelTask();
+                WheelTask wheelTask = new WheelTask(10f);
                 tasks.Add(wheelTask);
                 return wheelTask;
             default:
-                JuggleTask defaultTask = new JuggleTask();
+                JuggleTask defaultTask = new JuggleTask(10f);
                 tasks.Add(defaultTask);
                 return defaultTask;
         }

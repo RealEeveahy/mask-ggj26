@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 900611bd675aabc4cb823cd20d50ee0b, type: 3}
+  m_Name: BadEnd1Scene1
+  m_EditorClassIdentifier: Assembly-CSharp::IScene
+  sceneImage: {fileID: -5301489426812014704, guid: c2e383bf529be8042a77d74659a968ae, type: 3}
+  messages:
+  - "Why couldn\u2019t I do this right?\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+  - I had been working on this my whole life!
+  - "Maybe those voices were right, I shouldn\u2019t have bothered."
+  - "It should\u2019ve gone to somebody who could do the job of court jester correctly."
+  - "Instead of wasting everyone\u2019s time on my mediocrity, it could\u2019ve been
+    spent been entertained by someone worth their time."
+  - Unless it was someone to mock.
+  - To point and laugh at.
+  - Although I got lucky and was just sent on my way home.
+  - "They could\u2019ve set me up in a pillory, in the town square, and have me humiliated
+    for what I did."
+  - So, I did the next best thing.
+  - I locked myself away from the world.
+  - "That way I wouldn\u2019t ever get in anyone\u2019s way."
+  - There was nothing out there that I could do right anyway.
+  - Even if there was I was too ashamed to ever show my face again.
+  - How could I after those horrendous performances I did.
+  - No matter how much my parents pounded on my door.
+  - No matter how they pleaded and begged for me to come out.
+  - There was no point if all I did was bring shame and embarrassment to those around
+    me.

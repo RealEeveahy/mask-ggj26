@@ -9,7 +9,7 @@ public class CutsceneManagement : MonoBehaviour
     int sceneIndex = 0;
     int sceneSubIndex = 0;
 
-    public Image FadeOverlay;
+    public GameObject fadeOverlay;
     public void OnClick()
     {
         ServeNext();
@@ -25,6 +25,11 @@ public class CutsceneManagement : MonoBehaviour
                 {
                     sceneSubIndex++;
                     imageField.sprite = scene.sceneList[sceneIndex].sceneImage;
+
+                    //make a random page turn sound
+                    int r_int = Random.Range(0, 2);
+                    string key = r_int == 0 ? "page1" : "page2";
+                    GlobalManagement.instance.PlaySound(key, GlobalManagement.SoundType.SFX);
                 }
             }
             else
@@ -38,19 +43,8 @@ public class CutsceneManagement : MonoBehaviour
             // only end if the message has been fully displayed, setting an empty message queries whether or not the engine is busy!
             if (GlobalManagement.instance.SetMessage(""))
             {
-                StartCoroutine(FadeOut());
+                fadeOverlay.GetComponent<FadingElement>().FadeOut(GlobalManagement.instance.ShowNextDay);
             }
         }
-    }
-    IEnumerator FadeOut()
-    {
-        while (FadeOverlay.color.a < 1)
-        {
-            Color c = FadeOverlay.color;
-            c.a += Time.deltaTime;
-            FadeOverlay.color = c;
-            yield return new WaitForSeconds(0.005f);
-        }
-        GlobalManagement.instance.ShowNextDay();
     }
 }

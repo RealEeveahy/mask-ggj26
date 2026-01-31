@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 900611bd675aabc4cb823cd20d50ee0b, type: 3}
+  m_Name: NeutralEndScene1
+  m_EditorClassIdentifier: Assembly-CSharp::IScene
+  sceneImage: {fileID: 605162050437240712, guid: c0b1af66e0a9f2243bfa6541689bd768, type: 3}
+  messages:
+  - While I was descent at my job, the King and Queen soon grew tired of me.
+  - They replaced, and discarded, me without a second thought.
+  - "I had saved up some of the money I had received while working at the castle,
+    but it wouldn\u2019t last forever."
+  - My family and I had to go back to living in a house near the outskirts of the
+    kingdom.
+  - My parents continued to run the bakery, and I helped wherever I could.
+  - During that time, I had found someone to settle down with.
+  - "They were loving, and caring, even if I couldn\u2019t live up to their expiations."
+  - Once my parents were old enough to retire, I took over the family business.
+  - It only felt right to do so, and I had my partner by my side to help me through
+    it.
+  - Through all of this we eventually had kids of our own.
+  - Our little family never moved from this little part of the kingdom.
+  - We watched the world around us continue to change and move on.
+  - The son of the King and Queen would take over who, soon after, was betrothed
+    to the daughter of royalty status.
+  - It was rumoured that this marriage was put in place to keep the peace between
+    our kingdom and the neighbouring one.
+  - "While a life might\u2019ve seemed mediocre in the eyes of those who lived in
+    the castle, it was one we were contempt with."
+  - This was the part we were meant to play.
+  - Everyone had their place in the world, and this one was ours.

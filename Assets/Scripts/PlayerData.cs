@@ -6,7 +6,7 @@ using System;
 public class PlayerData : MonoBehaviour
 {
     public EventHandler<float> OnSanityChanged;
-    [SerializeField] private float sanity = 0.7f;
+    [SerializeField] private float sanity = 0.9f;
     public float Sanity
     {
         get { return sanity; }

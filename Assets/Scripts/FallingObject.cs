@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class FallingObject : MonoBehaviour
 {
     GameObject fallingObject;
-    public float sanityCost = 1f;
+    public float sanityCost = 0.1f;
     public GameObject creatorObject = null;
     public float respawnTime = 0.5f;
     public Rigidbody2D rigidObject = null;

@@ -8,8 +8,9 @@ public class WheelTask : ITask
     public float Duration { get; set; }
     public bool TaskComplete { get; set; }
     public GameObject View { get; set; }
-    public WheelTask()
+    public WheelTask(float duration)
     {
+        Duration = duration;
         PrefabPath = "Wheel Task";
     }
     public void Render()

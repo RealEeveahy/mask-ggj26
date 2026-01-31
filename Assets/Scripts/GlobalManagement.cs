@@ -14,11 +14,14 @@ public class GlobalManagement : MonoBehaviour
     public GameObject overlay;
     public static GlobalManagement instance { get; private set; }
     public List<CutsceneGroup> Queue = new List<CutsceneGroup>();
+    AudioManager audioManager;
     UIManagement ui_mgr;
+    TextManagement textManager;
 
     // variables to track game state
     public enum Phase { Intro, Story, Minigame }
     public Phase gamePhase;
+    public enum SoundType { SFX, MUSIC }
     public int currentDay = 0;
     public List<Day> days = new List<Day>();
     public Day GetDay() => days[currentDay];
@@ -37,6 +40,8 @@ public class GlobalManagement : MonoBehaviour
     }
     private void Start()
     { 
+        audioManager = GetComponent<AudioManager>();
+        textManager = GetComponent<TextManagement>();
         // define day queue
         days = new List<Day> {
             new Day(1),
@@ -63,7 +68,11 @@ public class GlobalManagement : MonoBehaviour
     {
         FindFirstObjectByType<DayManager>().PlayerDeath();
     }
-
+    public void PlaySound(string key, SoundType type)
+    {
+        if (type == SoundType.SFX) audioManager.PlaySoundEffect(key);
+        else if (type == SoundType.MUSIC) audioManager.SetMusic(key);
+    }
     public void OnSceneSwitch()
     {
         if (gamePhase == Phase.Intro)
@@ -92,7 +101,8 @@ public class GlobalManagement : MonoBehaviour
                 };
 
                 ui_mgr.UpdateSanity(GetComponent<PlayerData>().Sanity);
-                FindFirstObjectByType<DayManager>().ShowNextTask();
+                DayManager day_mgr = FindFirstObjectByType<DayManager>();
+                StartCoroutine(day_mgr.Initiate());
 
                 gamePhase = Phase.Story;
             }
@@ -107,10 +117,22 @@ public class GlobalManagement : MonoBehaviour
     /// False if the engine is busy displaying another message.</returns>
     public bool SetMessage(string message)
     {
-        TextManagement textManager = GetComponent<TextManagement>();
         if(!textManager.isBusy)
         {
             StartCoroutine(textManager.ShowMessage(message));
+            return true;
+        }
+        else
+        {
+            textManager.Hurry();
+            return false;
+        }
+    }
+    public bool EndMessage()
+    {
+        if (!textManager.isBusy)
+        {
+            textManager.Close();
             return true;
         }
         else

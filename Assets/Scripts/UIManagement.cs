@@ -8,6 +8,7 @@ public class UIManagement : MonoBehaviour
     public GameObject dayProgressBar;
     private Slider sanitySlider;
     private Slider dayProgressSlider;
+    public GameObject fadeOverlay;
 
     private bool useGameUI = true;
     void Awake()
@@ -17,6 +18,10 @@ public class UIManagement : MonoBehaviour
             sanitySlider = sanityBar.GetComponent<Slider>();
             dayProgressSlider = dayProgressBar.GetComponent<Slider>();
         }
+    }
+    private void Start()
+    {
+        fadeOverlay.GetComponent<FadingElement>().FadeIn();
     }
     void Update()
     {

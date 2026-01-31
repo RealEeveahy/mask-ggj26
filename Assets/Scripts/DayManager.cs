@@ -9,20 +9,24 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class DayManager : MonoBehaviour
 {
-    public static DayManager instance;
     public GameObject sceneOverlay, TaskParent;
     public GameObject PlayerDeathSprite;
     int tasksCompleted = 0;
-    //public int currentDay= 1;
-    //public int numberOfDays = 5;
-    //public List<Day> days = new List<Day>();
-    //public bool currentPhaseComplete = false;
-    //public bool currentDayComplete = false;
-    //public PlayerData player;
+    public List<string> OpeningDialogue = new List<string>();
+    public List<string> GoodDialogue = new List<string>();
+    public List<string> BadDialogue = new List<string>();
+    bool inDialogue = false;
     private void Start()
     {
         sceneOverlay.SetActive(false);
         PlayerDeathSprite.SetActive(false);
+    }
+    public IEnumerator Initiate()
+    {
+        //wait before showing dialogue
+        yield return new WaitForSeconds(3f);
+        GlobalManagement.instance.SetMessage(OpeningDialogue[Random.Range(0, OpeningDialogue.Count)]);
+        inDialogue = true;
     }
     public void ShowNextTask()
     {
@@ -65,15 +69,29 @@ public class DayManager : MonoBehaviour
     IEnumerator ElapseTask(float time)
     {
         yield return new WaitForSeconds(time);
-        ShowNextTask();
+        ClearTaskParent();
+        tasksCompleted++;
+
+        GlobalManagement.instance.SetMessage(GoodDialogue[Random.Range(0, GoodDialogue.Count)]);
+        inDialogue = true;
     }
     public void OnClick()
     {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero);
-        if (hit)
+        if(inDialogue)
         {
-            if(hit.transform.gameObject.CompareTag("FallingObject"))
-            hit.transform.gameObject.SendMessage("Throw");
+            // clicked during a conversation
+            if (GlobalManagement.instance.EndMessage())
+                ShowNextTask();
+        }
+        else
+        {
+            // clicked during minigame
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero);
+            if (hit)
+            {
+                if (hit.transform.gameObject.CompareTag("Pin"))
+                    hit.transform.gameObject.SendMessage("Throw");
+            }
         }
     }
     public void PlayerDeath()
