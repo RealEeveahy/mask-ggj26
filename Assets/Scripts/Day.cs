@@ -34,7 +34,7 @@ public class Day
         GlobalManagement.instance.ToggleOverlay(false);
         if (tasks.Count == 0)
         {
-            DayManager.instance.currentDayComplete = true;
+            //DayManager.instance.currentDayComplete = true;
             
         }
     }

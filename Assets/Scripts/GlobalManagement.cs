@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// Singleton Class. <br></br>
@@ -13,9 +14,12 @@ public class GlobalManagement : MonoBehaviour
     public GameObject overlay;
     public static GlobalManagement instance { get; private set; }
 
-    // moved to global so that any class may condition behaviour for state
+    // variables to track game state
     public enum Phase { Story, Minigame }
-    public Phase gamePhase; 
+    public Phase gamePhase;
+    public int currentDay = 0;
+    public List<Day> days = new List<Day>();
+    public Day GetDay() => days[currentDay];
     public float CurrentPlayerSanity() => GetComponent<PlayerData>().Sanity;
     private void Awake()
     {
@@ -33,6 +37,17 @@ public class GlobalManagement : MonoBehaviour
     {
         // change later
         GetComponent<PlayerData>().OnSanityChanged += (sender, value) => { GetComponent<UIManagement>().UpdateSanity(value); };
+
+        // define day queue
+        days = new List<Day> {
+            new Day(1),
+            new Day(3),
+            new Day(4),
+            new Day(5),
+            new Day(7)
+        };
+
+        //GetComponent<DayManager>().ShowNextTask();
     }
 
     // move the next few methods to other management classes later
@@ -42,13 +57,20 @@ public class GlobalManagement : MonoBehaviour
     }
     public void TaskComplete()
     {
-
+        
     }
-
 
     public void OnSceneSwitch()
     {
         GetComponent<TextManagement>().ConversationTextField = FindFirstObjectByType<TMP_Text>();
+        if(gamePhase == Phase.Story)
+        {
+            
+        }
+        else if(gamePhase == Phase.Minigame)
+        {
+            GetComponent<DayManager>().ShowNextTask();
+        }
     }
 
     /// <summary>

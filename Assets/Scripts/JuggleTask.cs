@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 
-public class JuggleTask: MonoBehaviour,ITask
+public class JuggleTask: ITask
 {
     public List<GameObject> pins = new List<GameObject>();
     public GameObject pinPrefab = null;
@@ -23,8 +23,8 @@ public class JuggleTask: MonoBehaviour,ITask
     void Start()
     {
         CurrentDuration = 0f;
-        spawnPosition = this.transform;
-        StartCoroutine(StartTask());
+        spawnPosition = ;
+        StartTask());
     }
     public void DoAction()
     {
