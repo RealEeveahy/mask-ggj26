@@ -19,6 +19,10 @@ public class TextManagement : MonoBehaviour
     {
         // prevent overlapping calls
         busy = true;
+        if (ConversationTextField == null)
+        {
+            ConversationTextField = FindFirstObjectByType<TMP_Text>();
+        }
         _printTime = timeBetweenPrints;
 
         // the current message being displayed on screen

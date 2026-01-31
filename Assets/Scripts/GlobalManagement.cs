@@ -13,10 +13,11 @@ public class GlobalManagement : MonoBehaviour
 {
     public GameObject overlay;
     public static GlobalManagement instance { get; private set; }
+    public List<CutsceneGroup> Queue = new List<CutsceneGroup>();
     UIManagement ui_mgr;
 
     // variables to track game state
-    public enum Phase { Story, Minigame }
+    public enum Phase { Intro, Story, Minigame }
     public Phase gamePhase;
     public int currentDay = 0;
     public List<Day> days = new List<Day>();
@@ -35,15 +36,7 @@ public class GlobalManagement : MonoBehaviour
         }
     }
     private void Start()
-    {
-        ui_mgr = FindFirstObjectByType<UIManagement>();
-        // change later
-        GetComponent<PlayerData>().OnSanityChanged += (sender, value) => {
-            ui_mgr.UpdateSanity(value); 
-        };
-
-        ui_mgr.UpdateSanity(GetComponent<PlayerData>().Sanity);
-
+    { 
         // define day queue
         days = new List<Day> {
             new Day(1),
@@ -58,6 +51,10 @@ public class GlobalManagement : MonoBehaviour
     }
 
     // move the next few methods to other management classes later
+    public void ShowNextCutscene()
+    {
+        StartCoroutine(LoadScene("StoryScene"));
+    }
     public void ShowNextDay()
     {
         StartCoroutine(LoadScene("SampleScene"));
@@ -69,14 +66,36 @@ public class GlobalManagement : MonoBehaviour
 
     public void OnSceneSwitch()
     {
-        GetComponent<TextManagement>().ConversationTextField = FindFirstObjectByType<TMP_Text>();
-        if(gamePhase == Phase.Story)
+        if (gamePhase == Phase.Intro)
         {
-            FindFirstObjectByType<CutsceneManagement>().ServeNext();
+            //do nothing on the intro, set to show story next
+            gamePhase = Phase.Story;
         }
-        else if(gamePhase == Phase.Minigame)
+        else
         {
-            FindFirstObjectByType<DayManager>().ShowNextTask();
+            GetComponent<TextManagement>().ConversationTextField = FindFirstObjectByType<TMP_Text>();
+            if (gamePhase == Phase.Story)
+            {
+                CutsceneManagement c_mgr = FindFirstObjectByType<CutsceneManagement>();
+                c_mgr.scene = Queue[0];
+                c_mgr.ServeNext();
+
+                gamePhase = Phase.Minigame;
+            }
+            else if (gamePhase == Phase.Minigame)
+            {
+                ui_mgr = FindFirstObjectByType<UIManagement>();
+                // change later
+                GetComponent<PlayerData>().OnSanityChanged += (sender, value) =>
+                {
+                    ui_mgr.UpdateSanity(value);
+                };
+
+                ui_mgr.UpdateSanity(GetComponent<PlayerData>().Sanity);
+                FindFirstObjectByType<DayManager>().ShowNextTask();
+
+                gamePhase = Phase.Story;
+            }
         }
     }
 
