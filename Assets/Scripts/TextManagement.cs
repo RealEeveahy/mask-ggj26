@@ -13,14 +13,14 @@ public class TextManagement : MonoBehaviour
     {
         if(ConversationTextField == null)
         {
-            ConversationTextField = FindFirstObjectByType<TMP_Text>();
+            ConversationTextField = FindFirstObjectByType<TMP_Text>(FindObjectsInactive.Include);
         }
     }
     public IEnumerator ShowMessage(string message)
     {
         // prevent overlapping calls
         busy = true;
-        if (ConversationTextField == null) { ConversationTextField = FindFirstObjectByType<TMP_Text>(); }
+        if (ConversationTextField == null) { ConversationTextField = FindFirstObjectByType<TMP_Text>(FindObjectsInactive.Include); }
         if (textParent == null) { textParent = ConversationTextField.gameObject.transform.parent.parent.gameObject; }
         textParent.SetActive(true);
         _printTime = timeBetweenPrints;

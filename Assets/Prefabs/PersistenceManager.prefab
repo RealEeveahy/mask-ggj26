@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   ConversationTextField: {fileID: 0}
+  textParent: {fileID: 0}
 --- !u!114 &4095692631066672250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,7 +67,7 @@ MonoBehaviour:
   overlay: {fileID: 0}
   Queue:
   - {fileID: 11400000, guid: 13a3618339a740f41a390a6fe82950b1, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 85d55d78e2173ee4dac77e27824161d6, type: 2}
   - {fileID: 0}
   gamePhase: 0
   currentDay: 0
@@ -82,7 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0cb656721a04244b8a0022662519bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  sanity: 0.7
+  sanity: 0.9
 --- !u!114 &646485137820230425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,8 +104,8 @@ MonoBehaviour:
   LuteA3: {fileID: 8300000, guid: a3c4dff2b416b024a84967c0cdd6c716, type: 3}
   LuteA13: {fileID: 8300000, guid: cbe086b30123dd54da46ca4b9012b22d, type: 3}
   LuteC4: {fileID: 8300000, guid: 203c425bfafa0ce43b86a4ce46da5e20, type: 3}
-  page1: {fileID: 8300000, guid: 9503172fbd5d6f247bff2732a7acc944, type: 3}
-  page2: {fileID: 8300000, guid: 395b1cf1da4b70e41b0ac75b9f123aa9, type: 3}
+  page1: {fileID: 8300000, guid: 4a1ebfd5bf68c93438704b8af5f33290, type: 3}
+  page2: {fileID: 8300000, guid: b50e03b4f86f68843bc099e2cb81efc8, type: 3}
   mg1: {fileID: 8300000, guid: 7a230391bf36dd9429dccf0cc2693d62, type: 3}
   mg2: {fileID: 8300000, guid: 321d9dd53456ed24dbe56acd678e6ec0, type: 3}
   musicSource: {fileID: 8128495606783710869}

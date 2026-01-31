@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -11,11 +12,22 @@ public class DayManager : MonoBehaviour
 {
     public GameObject sceneOverlay, TaskParent;
     public GameObject PlayerDeathSprite;
-    int tasksCompleted = 0;
+    public EventHandler<int> OnProgressChanged;
+    int _tasksCompleted = 0;
+    public int TasksCompleted
+    {
+        get { return _tasksCompleted; }
+        set { 
+            _tasksCompleted = value;
+            // notify listeners of change in progression (progress bar)
+            OnProgressChanged?.Invoke(this, _tasksCompleted);
+        }
+    }
     public List<string> OpeningDialogue = new List<string>();
     public List<string> GoodDialogue = new List<string>();
     public List<string> BadDialogue = new List<string>();
     bool inDialogue = false;
+    bool hasSeenCompleteMessage = false;
     private void Start()
     {
         sceneOverlay.SetActive(false);
@@ -25,17 +37,18 @@ public class DayManager : MonoBehaviour
     {
         //wait before showing dialogue
         yield return new WaitForSeconds(3f);
-        GlobalManagement.instance.SetMessage(OpeningDialogue[Random.Range(0, OpeningDialogue.Count)]);
+        GlobalManagement.instance.SetMessage(OpeningDialogue[UnityEngine.Random.Range(0, OpeningDialogue.Count)]);
         inDialogue = true;
     }
     public void ShowNextTask()
     {
-        if (tasksCompleted < GlobalManagement.instance.GetDay().tasks.Count)
+        inDialogue = false;
+        if (TasksCompleted < GlobalManagement.instance.GetDay().tasks.Count)
         {
             sceneOverlay.SetActive(true);
             sceneOverlay.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.8f);
 
-            ITask nextTask = GlobalManagement.instance.GetDay().tasks[tasksCompleted];
+            ITask nextTask = GlobalManagement.instance.GetDay().tasks[TasksCompleted];
             ClearTaskParent();
 
             string path = nextTask.PrefabPath;
@@ -60,7 +73,9 @@ public class DayManager : MonoBehaviour
         }
         else
         {
-            // signal end of tasks for day
+            GlobalManagement.instance.SetMessage("That's quite enough for one day. Get out of here!");
+            inDialogue = true;
+            hasSeenCompleteMessage = true;
         }
     }
     public void ClearTaskParent()
@@ -74,9 +89,11 @@ public class DayManager : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         ClearTaskParent();
-        tasksCompleted++;
+        TasksCompleted++;
 
-        GlobalManagement.instance.SetMessage(GoodDialogue[Random.Range(0, GoodDialogue.Count)]);
+        sceneOverlay.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+
+        GlobalManagement.instance.SetMessage(GoodDialogue[UnityEngine.Random.Range(0, GoodDialogue.Count)]);
         inDialogue = true;
     }
     public void OnClick()
@@ -85,7 +102,15 @@ public class DayManager : MonoBehaviour
         {
             // clicked during a conversation
             if (GlobalManagement.instance.EndMessage())
-                ShowNextTask();
+            {
+                if (hasSeenCompleteMessage)
+                {
+                    GlobalManagement.instance.DayComplete();
+                    inDialogue = false;
+                }
+                else
+                    ShowNextTask();
+            }
         }
         else
         {
@@ -100,6 +125,7 @@ public class DayManager : MonoBehaviour
     }
     public void PlayerDeath()
     {
+        TaskParent.SetActive(false);
         PlayerDeathSprite.SetActive(true);
         sceneOverlay.SetActive(true);
         sceneOverlay.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);

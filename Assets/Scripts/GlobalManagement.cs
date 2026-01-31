@@ -44,7 +44,7 @@ public class GlobalManagement : MonoBehaviour
         textManager = GetComponent<TextManagement>();
         // define day queue
         days = new List<Day> {
-            new Day(1),
+            new Day(2),
             new Day(3),
             new Day(4),
             new Day(5),
@@ -54,7 +54,11 @@ public class GlobalManagement : MonoBehaviour
         //run method on start
         OnSceneSwitch();
     }
-
+    public void DayComplete()
+    {
+        currentDay += 1;
+        ui_mgr.fadeOverlay.GetComponent<FadingElement>().FadeOut(ShowNextCutscene);
+    }
     // move the next few methods to other management classes later
     public void ShowNextCutscene()
     {
@@ -86,7 +90,7 @@ public class GlobalManagement : MonoBehaviour
             if (gamePhase == Phase.Story)
             {
                 CutsceneManagement c_mgr = FindFirstObjectByType<CutsceneManagement>();
-                c_mgr.scene = Queue[0];
+                c_mgr.scene = Queue[currentDay];
                 c_mgr.ServeNext();
 
                 gamePhase = Phase.Minigame;
@@ -94,14 +98,19 @@ public class GlobalManagement : MonoBehaviour
             else if (gamePhase == Phase.Minigame)
             {
                 ui_mgr = FindFirstObjectByType<UIManagement>();
+                ui_mgr.DayProgressConfig(GetDay().tasks.Count);
                 // change later
                 GetComponent<PlayerData>().OnSanityChanged += (sender, value) =>
                 {
                     ui_mgr.UpdateSanity(value);
                 };
-
+                
                 ui_mgr.UpdateSanity(GetComponent<PlayerData>().Sanity);
                 DayManager day_mgr = FindFirstObjectByType<DayManager>();
+                day_mgr.OnProgressChanged += (sender, value) =>
+                {
+                    ui_mgr.UpdateProgress(value);
+                };
                 StartCoroutine(day_mgr.Initiate());
 
                 gamePhase = Phase.Story;

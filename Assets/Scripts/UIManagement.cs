@@ -32,7 +32,10 @@ public class UIManagement : MonoBehaviour
     {
         sanitySlider.value = newValue;
     }
-
+    public void UpdateProgress(int newValue)
+    {
+        dayProgressSlider.value = newValue;
+    }
     /// <summary>
     /// Configure the progress increment size for the day-progress bar based on how many
     /// tasks must be completed in that day.
