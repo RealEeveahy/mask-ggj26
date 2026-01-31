@@ -12,6 +12,16 @@ public class PlayerData : MonoBehaviour
         get { return sanity; }
         set { 
             if (sanity == value) return;
+            if(value < 0f)
+            {
+                sanity = 0f;
+                GlobalManagement.instance.RoundLoss();
+                return;
+            }
+            if (value > 1f)
+            {
+                sanity = 1f;
+            }
             sanity = value;
 
             // notify listeners of change in sanity value

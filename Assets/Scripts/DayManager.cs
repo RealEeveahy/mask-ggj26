@@ -1,7 +1,8 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Manages interactions that exist purely in the Game Scene
@@ -10,6 +11,7 @@ public class DayManager : MonoBehaviour
 {
     public static DayManager instance;
     public GameObject sceneOverlay, TaskParent;
+    public GameObject PlayerDeathSprite;
     int tasksCompleted = 0;
     //public int currentDay= 1;
     //public int numberOfDays = 5;
@@ -17,11 +19,18 @@ public class DayManager : MonoBehaviour
     //public bool currentPhaseComplete = false;
     //public bool currentDayComplete = false;
     //public PlayerData player;
-
+    private void Start()
+    {
+        sceneOverlay.SetActive(false);
+        PlayerDeathSprite.SetActive(false);
+    }
     public void ShowNextTask()
     {
         if (tasksCompleted < GlobalManagement.instance.GetDay().tasks.Count)
         {
+            sceneOverlay.SetActive(true);
+            sceneOverlay.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.8f);
+
             ITask nextTask = GlobalManagement.instance.GetDay().tasks[tasksCompleted];
             ClearTaskParent();
 
@@ -31,6 +40,8 @@ public class DayManager : MonoBehaviour
             GameObject instTask = Instantiate(toRender);
             instTask.GetComponent<JuggleBehaviour>().task = nextTask;
             instTask.transform.SetParent(TaskParent.transform);
+
+            StartCoroutine(ElapseTask(nextTask.Duration));
         }
         else
         {
@@ -44,62 +55,24 @@ public class DayManager : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
     }
-
-    //void Awake()
-    //{
-    //    if (instance == null)
-    //    {
-    //        instance = this;
-    //    }
-    //    else
-    //    {
-    //        Destroy(this.gameObject);
-    //        return;
-    //    }
-    //    DontDestroyOnLoad(this.gameObject);
-    //}
-
-    //void Start()
-    //{
-    //    player = GameObject.Find("Player").GetComponent<PlayerData>();
-    //    GlobalManagement.instance.gamePhase = GlobalManagement.Phase.Story;
-    //    for (int i = 0; i < numberOfDays; i++)
-    //    {
-    //        days.Add(new Day(i));
-    //    }
-    //}
-
-    //// move to events rather than checks
-    //void Update()
-    //{
-    //    if (currentPhaseComplete)
-    //    {
-    //        if (currentDayComplete)
-    //        {
-    //            FinishDay();
-    //            return;
-    //        }
-    //        //SwitchPhase();
-    //        Debug.Log($"{GlobalManagement.instance.gamePhase}");
-    //    }
-    //}
-    ///*void SwitchPhase()
-    //{
-    //    switch (currentPhase)
-    //    {
-    //        case Phase.Story:
-    //            currentPhase = Phase.Minigame;
-    //            //days[currentDay].TaskStarted()
-    //            break;
-    //        case Phase.Minigame:
-    //            currentPhase = Phase.Story;
-    //            break;
-    //    }
-    //}*/
-    //void FinishDay()
-    //{
-    //    currentDay++;
-    //    GlobalManagement.instance.gamePhase = GlobalManagement.Phase.Story;
-    //    currentPhaseComplete = false;
-    //}
+    IEnumerator ElapseTask(float time)
+    {
+        yield return new WaitForSeconds(time);
+        ShowNextTask();
+    }
+    public void OnClick()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero);
+        if (hit)
+        {
+            if(hit.transform.gameObject.CompareTag("FallingObject"))
+            hit.transform.gameObject.SendMessage("Throw");
+        }
+    }
+    public void PlayerDeath()
+    {
+        PlayerDeathSprite.SetActive(true);
+        sceneOverlay.SetActive(true);
+        sceneOverlay.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+    }
 }

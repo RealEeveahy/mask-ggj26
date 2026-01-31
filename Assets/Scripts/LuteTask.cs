@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class LuteTask : ITask
@@ -8,6 +9,7 @@ public class LuteTask : ITask
     public float Duration { get; set; }
     public bool TaskComplete { get; set; }
     public GameObject View { get; set; }
+    public Action Miss { get; set; }
     public LuteTask()
     {
         PrefabPath = "Juggling Task";
@@ -16,13 +18,6 @@ public class LuteTask : ITask
     {
 
         // Set background active?
-    }
-    void Start()
-    {
-        CurrentDuration = 0f;
-
-
-        //Duration = duration;
     }
     public void DoAction()
     {

@@ -10,15 +10,11 @@ public class CutsceneManagement : MonoBehaviour
     int sceneSubIndex = 0;
 
     public Image FadeOverlay;
-    public void Start()
-    {
-        ServeNext();
-    }
     public void OnClick()
     {
         ServeNext();
     }
-    void ServeNext()
+    public void ServeNext()
     {
         if(sceneIndex < scene.sceneList.Count)
         {

@@ -28,7 +28,6 @@ public class FallingObject : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == this.tag) { return; }
-        Debug.Log("FallingObject.OnTriggerEnter2d");
         if (collision != null)
         {
             //Destroy(this.gameObject);
@@ -38,12 +37,12 @@ public class FallingObject : MonoBehaviour
             {
                 StartCoroutine(RespawnPin());
             }
-            //GlobalManagement.instance.DecreaseSanity(sanityCost); UNCOMMENT OUT WHEN IN THE GAME
         }
     }
     IEnumerator RespawnPin()
     {
         busy = true;
+        GlobalManagement.instance.DecreaseSanity(sanityCost);
         yield return new WaitForSeconds(respawnTime);
         GetComponentInChildren<SpriteRenderer>().enabled = true;
         rigidObject.linearVelocity = Vector3.zero;
@@ -51,7 +50,6 @@ public class FallingObject : MonoBehaviour
     }
     public void Throw()
     {
-        Debug.Log("FallingObject.Throw");
         float randomnX = Random.value*100;
         float randomnY = Random.value * 100;
         Vector2 randomnVector = new Vector2(randomnX, randomnY);

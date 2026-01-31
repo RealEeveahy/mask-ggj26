@@ -13,6 +13,7 @@ public class GlobalManagement : MonoBehaviour
 {
     public GameObject overlay;
     public static GlobalManagement instance { get; private set; }
+    UIManagement ui_mgr;
 
     // variables to track game state
     public enum Phase { Story, Minigame }
@@ -35,8 +36,13 @@ public class GlobalManagement : MonoBehaviour
     }
     private void Start()
     {
+        ui_mgr = FindFirstObjectByType<UIManagement>();
         // change later
-        GetComponent<PlayerData>().OnSanityChanged += (sender, value) => { GetComponent<UIManagement>().UpdateSanity(value); };
+        GetComponent<PlayerData>().OnSanityChanged += (sender, value) => {
+            ui_mgr.UpdateSanity(value); 
+        };
+
+        ui_mgr.UpdateSanity(GetComponent<PlayerData>().Sanity);
 
         // define day queue
         days = new List<Day> {
@@ -47,8 +53,8 @@ public class GlobalManagement : MonoBehaviour
             new Day(7)
         };
 
-        DayManager mgr = FindFirstObjectByType<DayManager>();
-        mgr.ShowNextTask();
+        //run method on start
+        OnSceneSwitch();
     }
 
     // move the next few methods to other management classes later
@@ -56,9 +62,9 @@ public class GlobalManagement : MonoBehaviour
     {
         StartCoroutine(LoadScene("SampleScene"));
     }
-    public void TaskComplete()
+    public void RoundLoss()
     {
-        
+        FindFirstObjectByType<DayManager>().PlayerDeath();
     }
 
     public void OnSceneSwitch()
@@ -66,11 +72,11 @@ public class GlobalManagement : MonoBehaviour
         GetComponent<TextManagement>().ConversationTextField = FindFirstObjectByType<TMP_Text>();
         if(gamePhase == Phase.Story)
         {
-            
+            FindFirstObjectByType<CutsceneManagement>().ServeNext();
         }
         else if(gamePhase == Phase.Minigame)
         {
-            GetComponent<DayManager>().ShowNextTask();
+            FindFirstObjectByType<DayManager>().ShowNextTask();
         }
     }
 
@@ -96,7 +102,7 @@ public class GlobalManagement : MonoBehaviour
     }
     public void DecreaseSanity(float sanityCost)
     {
-        GetComponent<PlayerData>().Sanity += sanityCost;
+        GetComponent<PlayerData>().Sanity -= sanityCost;
         //if item hits the floor take sanity.
     }
     public void ToggleOverlay(bool state)
