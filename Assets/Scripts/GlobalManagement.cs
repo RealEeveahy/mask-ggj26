@@ -47,7 +47,8 @@ public class GlobalManagement : MonoBehaviour
             new Day(7)
         };
 
-        //GetComponent<DayManager>().ShowNextTask();
+        DayManager mgr = FindFirstObjectByType<DayManager>();
+        mgr.ShowNextTask();
     }
 
     // move the next few methods to other management classes later

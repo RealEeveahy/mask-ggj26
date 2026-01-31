@@ -378,8 +378,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1530307053033955160}
-  - component: {fileID: 7539573643287089777}
   - component: {fileID: 5673240750382454583}
+  - component: {fileID: 4682181945144686036}
   m_Layer: 0
   m_Name: Juggling Task
   m_TagString: Untagged
@@ -406,23 +406,6 @@ Transform:
   - {fileID: 5768716612045544955}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7539573643287089777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6571526339337569505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea43f556b1de5ef469d82e2e367b1de4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::JuggleTask
-  pins: []
-  pinPrefab: {fileID: 3272376653636876231, guid: ab9e20b546f30814594970c1cd519a3b, type: 3}
-  spawnPosition: {fileID: 1530307053033955160}
-  spawnTime: 1
-  numberOfPins: 3
 --- !u!114 &5673240750382454583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,6 +436,23 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &4682181945144686036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6571526339337569505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faeb14fcb82567346be8a59ddfe04505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JuggleBehaviour
+  pinPrefab: {fileID: 3272376653636876231, guid: ab9e20b546f30814594970c1cd519a3b, type: 3}
+  spawnPosition: {fileID: 9043543297911604894}
+  spawnTime: 1
+  numberOfPins: 3
+  pins: []
 --- !u!1 &6810158880258898270
 GameObject:
   m_ObjectHideFlags: 0

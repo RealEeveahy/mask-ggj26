@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 
 public class JuggleBehaviour : MonoBehaviour
 {
-    public JuggleTask task;
+    public ITask task;
     public GameObject pinPrefab;
     public Transform spawnPosition = null;
     public float spawnTime = 1f;
@@ -22,12 +22,12 @@ public class JuggleBehaviour : MonoBehaviour
     }
     void Update()
     {
-        task.CurrentDuration += Time.deltaTime;
-        if (task.CurrentDuration >= task.Duration)
-        {
-            task.TaskComplete = true;
-            //Day.Equals=
-        }
+        //task.CurrentDuration += Time.deltaTime;
+        //if (task.CurrentDuration >= task.Duration)
+        //{
+        //    task.TaskComplete = true;
+        //    //Day.Equals=
+        //}
     }
     public GameObject CreatePin()
     {

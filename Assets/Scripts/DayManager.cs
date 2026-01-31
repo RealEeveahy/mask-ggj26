@@ -22,8 +22,15 @@ public class DayManager : MonoBehaviour
     {
         if (tasksCompleted < GlobalManagement.instance.GetDay().tasks.Count)
         {
+            ITask nextTask = GlobalManagement.instance.GetDay().tasks[tasksCompleted];
             ClearTaskParent();
-            GlobalManagement.instance.GetDay().tasks[tasksCompleted].Render();
+
+            string path = nextTask.PrefabPath;
+
+            GameObject toRender = Resources.Load<GameObject>(path);
+            GameObject instTask = Instantiate(toRender);
+            instTask.GetComponent<JuggleBehaviour>().task = nextTask;
+            instTask.transform.SetParent(TaskParent.transform);
         }
         else
         {

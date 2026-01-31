@@ -5,12 +5,16 @@ using UnityEngine.InputSystem;
 
 public class JuggleTask: ITask
 {
-    public GameObject prefab = Resources.Load<GameObject>("Juggling Task");
+    public string PrefabPath { get; set; }
     public float CurrentDuration { get; set; }
     public float Speed { get; set; }
     public float Duration { get; set; }
     public bool TaskComplete { get; set; }
     public GameObject View { get; set; }
+    public JuggleTask()
+    {
+        PrefabPath = "Juggling Task";
+    }
     public void Render()
     {
         

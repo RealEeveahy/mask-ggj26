@@ -1,12 +1,17 @@
 using UnityEngine;
 
-public class LuteTask : MonoBehaviour, ITask
+public class LuteTask : ITask
 {
+    public string PrefabPath { get; set; }
     public float CurrentDuration { get; set; }
     public float Speed { get; set; }
     public float Duration { get; set; }
     public bool TaskComplete { get; set; }
     public GameObject View { get; set; }
+    public LuteTask()
+    {
+        PrefabPath = "Juggling Task";
+    }
     public void Render()
     {
 

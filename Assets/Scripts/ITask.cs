@@ -9,7 +9,7 @@ public interface ITask
     float Speed { get; set; }
     bool TaskComplete { get; set; }
     GameObject View {  get; set; } //Instantiate gameObjects for task
-
+    string PrefabPath { get; set; }
     void DoAction();
     void Render(); // Set background active?
 
