@@ -29,7 +29,14 @@ public class DayManager : MonoBehaviour
 
             GameObject toRender = Resources.Load<GameObject>(path);
             GameObject instTask = Instantiate(toRender);
-            instTask.GetComponent<JuggleBehaviour>().task = nextTask;
+            if (instTask.GetComponent<JuggleBehaviour>() ==null)
+            {
+                instTask.GetComponent<LuteBehaviour>().task = nextTask;
+            }
+            else
+            {
+                instTask.GetComponent<JuggleBehaviour>().task = nextTask;
+            }
             instTask.transform.SetParent(TaskParent.transform);
         }
         else

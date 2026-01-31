@@ -10,7 +10,7 @@ public class LuteTask : ITask
     public GameObject View { get; set; }
     public LuteTask()
     {
-        PrefabPath = "Juggling Task";
+        PrefabPath = "Lute Task";
     }
     public void Render()
     {
