@@ -7,7 +7,6 @@ public class LuteTask : MonoBehaviour, ITask
     public float Duration { get; set; }
     public bool TaskComplete { get; set; }
     public GameObject View { get; set; }
-    public float CurrentDuration { get; set; }
     public void Render()
     {
 

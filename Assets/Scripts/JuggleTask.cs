@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class JuggleTask: MonoBehaviour,ITask
 {
@@ -42,6 +43,7 @@ public class JuggleTask: MonoBehaviour,ITask
     }
     public GameObject CreatePin()
     {
+        Debug.Log("JuggleTask.CreatePin()");
         if (pinPrefab == null)
         {
             Debug.Log("No pin prefab assigned");
@@ -55,7 +57,17 @@ public class JuggleTask: MonoBehaviour,ITask
     IEnumerator StartTask()
     {
         while (pins.Count < numberOfPins)
-        yield return new WaitForSeconds(spawnTime);
-        pins.Add(CreatePin());
+        {
+            yield return new WaitForSeconds(spawnTime);
+            pins.Add(CreatePin());
+        }
+    }
+    public void OnClick()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero);
+        if (hit)
+        {
+            hit.transform.gameObject.SendMessage("Throw");
+        }
     }
 }
