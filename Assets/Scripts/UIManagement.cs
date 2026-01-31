@@ -10,7 +10,7 @@ public class UIManagement : MonoBehaviour
     private Slider dayProgressSlider;
 
     private bool useGameUI = true;
-    void Start()
+    void Awake()
     {
         if(useGameUI)
         {

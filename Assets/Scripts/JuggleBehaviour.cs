@@ -16,7 +16,6 @@ public class JuggleBehaviour : MonoBehaviour
 
     void Start()
     {
-        task.CurrentDuration = 0f;
         spawnPosition = transform;
         StartCoroutine(StartTask());
     }
