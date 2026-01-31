@@ -1,7 +1,14 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class JuggleTask: MonoBehaviour,ITask
 {
+    public List<GameObject> pins = new List<GameObject>();
+    public GameObject pinPrefab = null;
+    public Transform spawnPosition = null;
+    public float spawnTime = 1f;
+    public int numberOfPins = 3;
     public float CurrentDuration { get; set; }
     public float Speed { get; set; }
     public float Duration { get; set; }
@@ -15,9 +22,8 @@ public class JuggleTask: MonoBehaviour,ITask
     void Start()
     {
         CurrentDuration = 0f;
-        
-        
-        //Duration = duration;
+        spawnPosition = this.transform;
+        StartCoroutine(StartTask());
     }
     public void DoAction()
     {
@@ -31,7 +37,25 @@ public class JuggleTask: MonoBehaviour,ITask
         if (CurrentDuration >= Duration)
         {
             TaskComplete = true;
-            Day.Equals=
+            //Day.Equals=
         }
+    }
+    public GameObject CreatePin()
+    {
+        if (pinPrefab == null)
+        {
+            Debug.Log("No pin prefab assigned");
+            return null;
+        }
+        GameObject instantiatedPin = Instantiate(pinPrefab, spawnPosition);
+        instantiatedPin.transform.SetParent(transform, false);
+        instantiatedPin.GetComponent<FallingObject>().creatorObject = this.gameObject;
+        return instantiatedPin;
+    }
+    IEnumerator StartTask()
+    {
+        while (pins.Count < numberOfPins)
+        yield return new WaitForSeconds(spawnTime);
+        pins.Add(CreatePin());
     }
 }
