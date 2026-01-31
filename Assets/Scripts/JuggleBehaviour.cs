@@ -52,8 +52,10 @@ public class JuggleBehaviour : MonoBehaviour
     public void OnClick()
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero);
+        Debug.Log($"{hit}: was hit OnClick");
         if (hit)
         {
+            Debug.Log($"{hit}: was hit OnClick");
             hit.transform.gameObject.SendMessage("Throw");
         }
     }

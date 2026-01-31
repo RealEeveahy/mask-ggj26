@@ -14,22 +14,13 @@ public class WheelBehaviour : MonoBehaviour
     public List<GameObject> swords = new List<GameObject>();
     public GameObject playerObject = null;
     public Rigidbody2D rigidBody = null;
-    public float spinStrength = 10f;
+    public float spinStrength = 100f;
 
     void Start()
     {
         spawnPosition = transform;
         StartCoroutine(StartTask());
         rigidBody = playerObject.GetComponent<Rigidbody2D>();
-    }
-    void Update()
-    {
-        //task.CurrentDuration += Time.deltaTime;
-        //if (task.CurrentDuration >= task.Duration)
-        //{
-        //    task.TaskComplete = true;
-        //    //Day.Equals=
-        //}
     }
     public GameObject CreateSword()
     {
@@ -41,7 +32,6 @@ public class WheelBehaviour : MonoBehaviour
         }
         GameObject instantiatedSword = Instantiate(swordPrefab, spawnPosition);
         instantiatedSword.transform.SetParent(transform, false);
-        instantiatedSword.GetComponent<FallingObject>().creatorObject = this.gameObject;
         int randomn = Random.Range(0, maxNumberOfSwords); 
         instantiatedSword.transform.GetComponent<Sword>().swordLandingPoint = targets[randomn]; // how to do this a better way?
         return instantiatedSword;
@@ -56,11 +46,12 @@ public class WheelBehaviour : MonoBehaviour
     }
     public void OnClick()
     {
+        Debug.Log($"WheelBehaviour.OnClick");
         SpinWheel();
     }
     public void SpinWheel()
     {
 
-        rigidBody.AddTorque(spinStrength);
+        rigidBody.AddTorque(spinStrength, ForceMode2D.Impulse);
     }
 }
