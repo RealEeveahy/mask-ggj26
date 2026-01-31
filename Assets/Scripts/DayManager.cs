@@ -46,9 +46,13 @@ public class DayManager : MonoBehaviour
             {
                 instTask.GetComponent<LuteBehaviour>().task = nextTask;
             }
-            else
+            else if (instTask.GetComponent<WheelBehaviour>() == null)
             {
                 instTask.GetComponent<JuggleBehaviour>().task = nextTask;
+            }
+            else if (instTask.GetComponent<JuggleBehaviour>() == null)
+            {
+                instTask.GetComponent<WheelBehaviour>().task = nextTask;
             }
             instTask.transform.SetParent(TaskParent.transform);
 

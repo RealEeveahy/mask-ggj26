@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6757574014903931255}
-  - component: {fileID: 1027311049718612852}
   - component: {fileID: 1163746333737142149}
-  - component: {fileID: -7005183397033720566}
+  - component: {fileID: 7624282917672315016}
+  - component: {fileID: 6666956433063005483}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Note
@@ -35,33 +35,6 @@ Transform:
   - {fileID: 4704657219798407059}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &1027311049718612852
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3272376653636876231}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!70 &1163746333737142149
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -96,10 +69,10 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 2, y: 4}
+  m_Offset: {x: 0.23, y: 0.23}
+  m_Size: {x: 0.91, y: 2.03}
   m_Direction: 0
---- !u!114 &-7005183397033720566
+--- !u!114 &7624282917672315016
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,15 +81,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 3272376653636876231}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b7c1f41ecca7824b9a632564482698c, type: 3}
+  m_Script: {fileID: 11500000, guid: 64509393291bb154c9b29f39563ff5c9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
-  sanityCost: 0.1
-  creatorObject: {fileID: 0}
-  respawnTime: 2
-  rigidObject: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::Sword
+  swordLandingPoint: {fileID: 0}
+  speed: 0.05
+  sanityCost: 0.05
   busy: 0
-  throwStrength: 0
+  origin: {x: 0, y: 0, z: 0}
+  respawnTime: 2
+--- !u!50 &6666956433063005483
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272376653636876231}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3456910762849481671
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +127,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7233288016809590064}
   - component: {fileID: 6110118571580182818}
-  - component: {fileID: 790951582061117514}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -197,7 +196,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: -7612927377675235331, guid: 30ee7707c2baf534891fbdf20ed2ee39, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -209,20 +208,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &790951582061117514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3456910762849481671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef198dd1fafa3af4aa4e33439986f37b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PinColour
-  sprite1: {fileID: -6184957895236375650, guid: 3517e39d658b4524380bdb00d60b1dff, type: 3}
-  sprite2: {fileID: -4364848657814777311, guid: 7ac6275ad02969e4fadaf6d7f1213316, type: 3}
 --- !u!1 &7835534986951738126
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4704657219798407059}
   m_Layer: 0
-  m_Name: Pin Parent
+  m_Name: Sword Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

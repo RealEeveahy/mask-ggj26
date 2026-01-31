@@ -37,7 +37,9 @@ public class LuteBehaviour : MonoBehaviour
         }
         GameObject instantiatedPin = Instantiate(notePrefab, spawnPosition);
         instantiatedPin.transform.SetParent(transform, false);
-        instantiatedPin.GetComponent<FallingObject>().creatorObject = this.gameObject;
+        Note objectFalling = instantiatedPin.GetComponent<Note>();
+        objectFalling.creatorObject = this.gameObject;
+        objectFalling.SetNotePosition();
         return instantiatedPin;
     }
     IEnumerator StartTask()
@@ -53,7 +55,9 @@ public class LuteBehaviour : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero);
         if (hit)
         {
+            Debug.Log($"{hit}: was hit OnClick");
             hit.transform.gameObject.SendMessage("PlayNote");
+            //hit.transform.GetComponent<Note>(StartCoroutine(RespawnNote(3f))); // if we click it make it reset as well.
         }
     }
 }

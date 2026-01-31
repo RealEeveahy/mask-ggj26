@@ -27,26 +27,17 @@ public class FallingObject : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == this.tag) { return; }
         if (collision != null)
         {
-            //Destroy(this.gameObject);
+            if (collision.tag == this.tag) { return; }
             GetComponentInChildren<SpriteRenderer>().enabled = false;
             GlobalManagement.instance.DecreaseSanity(sanityCost);
-            if (busy == false && this.tag == "Pin")
+            if (busy == false)
             {
                 // Play pin dropping audio.
                 StartCoroutine(RespawnPin());
             }
-            if (busy == false && this.tag == "Note")
-            {
 
-                // Play pin dropping audio.
-                int randomn = Random.Range(1, 4);
-                Vector3 newVector = new Vector3(randomn, 0, 0);
-                transform.position = transform.position + newVector;
-                StartCoroutine(RespawnNote());
-            }
         }
     }
     IEnumerator RespawnPin()
@@ -55,18 +46,10 @@ public class FallingObject : MonoBehaviour
         yield return new WaitForSeconds(respawnTime);
         transform.position = creatorObject.transform.position;
         GetComponentInChildren<SpriteRenderer>().enabled = true;
-        rigidObject.linearVelocity = Vector3.zero;
+        rigidObject.linearVelocity = Vector3.down;
         busy = false;
     }
-    IEnumerator RespawnNote()
-    {
-        busy = true;
-        int randomn = Random.Range(1, 8);
-        yield return new WaitForSeconds(randomn / 2);
-        GetComponentInChildren<SpriteRenderer>().enabled = true;
-        rigidObject.linearVelocity = Vector3.zero;
-        busy = false;
-    }
+
     public void Throw()
     {
         float randomnX = Random.value * 100;
@@ -75,9 +58,6 @@ public class FallingObject : MonoBehaviour
         rigidObject.AddForce(Vector2.up * throwStrength + randomnVector);
         rigidObject.AddTorque(randomnX);// * Time.fixedDeltaTime);
     }
-    public void PlayNote()
-    {
-        Debug.Log("FallingObject.PlayNote");
-        // Call Audio manager to play the note.
-    }
+
+    
 }
