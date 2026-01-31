@@ -914,7 +914,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   overlay: {fileID: 0}
-  gamePhase: 1
+  Queue:
+  - {fileID: 11400000, guid: 13a3618339a740f41a390a6fe82950b1, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  gamePhase: 0
   currentDay: 0
 --- !u!114 &349279540
 MonoBehaviour:

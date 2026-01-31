@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 900611bd675aabc4cb823cd20d50ee0b, type: 3}
+  m_Name: Intro1
+  m_EditorClassIdentifier: Assembly-CSharp::IScene
+  sceneImage: {fileID: 8172058765175349608, guid: 720f03562040aff47ab7d8c189e8d39c, type: 3}
+  messages:
+  - "Out of the hundreds that lined the halls, I was the one that was chosen.\r\r\n\r\n\r\n\r\n\r\n"
+  - Somehow, out of everyone that auditioned to become the new court jester, I was
+    the one that the King and Queen decided on.
+  - It was the best news that could ever happen!
+  - Now I could have a steady source of income.
+  - "I could help bring food to the table, and my family wouldn\u2019t have to worry
+    about living on the streets."
+  - While some may consider working, and owning, a bakery might seem like a luxurious
+    job.
+  - But my family is barely able to scrape by.
+  - Ingredients were sometimes hard to come by, or expensive.
+  - And with living near the outskirts of the kingdom, we had to sell our goods at
+    a lower price.
+  - So having this job, in the castle of all places, was something like a dream come
+    true!
+  - Besides I had plenty of practice putting on a performance.
+  - "Or a \u201Cmask\u201D so to speak!"

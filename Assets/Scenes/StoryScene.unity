@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 399622992}
   - component: {fileID: 399622991}
   - component: {fileID: 399622993}
+  - component: {fileID: 399622994}
   m_Layer: 0
   m_Name: CutsceneController
   m_TagString: Untagged
@@ -197,6 +198,20 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &399622994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399622990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a09e5a1b458ac6b4a828e246ea449d10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TextManagement
+  timeBetweenPrints: 0.05
+  ConversationTextField: {fileID: 958614917}
 --- !u!1 &420038657
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,12 +991,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2017072734}
-  - component: {fileID: 2017072733}
-  - component: {fileID: 2017072732}
   - component: {fileID: 2017072731}
   - component: {fileID: 2017072730}
-  - component: {fileID: 2017072729}
-  - component: {fileID: 2017072728}
   m_Layer: 0
   m_Name: PersistenceManager
   m_TagString: GameController
@@ -989,48 +1000,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2017072728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2017072727}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard&Mouse
-  m_DefaultActionMap: UI
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!114 &2017072729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2017072727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2316938c9ce206a41bf17dee6be3e23f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!114 &2017072730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1057,35 +1026,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   overlay: {fileID: 0}
+  Queue: []
   gamePhase: 0
---- !u!114 &2017072732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2017072727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a09e5a1b458ac6b4a828e246ea449d10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  timeBetweenPrints: 0.05
-  ConversationTextField: {fileID: 0}
---- !u!114 &2017072733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2017072727}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0606e459d0c910d479683578c30ea79a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  sanityBar: {fileID: 0}
-  dayProgressBar: {fileID: 0}
+  currentDay: 0
 --- !u!4 &2017072734
 Transform:
   m_ObjectHideFlags: 0

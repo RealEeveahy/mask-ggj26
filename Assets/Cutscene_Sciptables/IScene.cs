@@ -10,6 +10,6 @@ using System.Collections.Generic;
 public class IScene : ScriptableObject
 {
     public Sprite sceneImage;
-    [TextArea]
+    [TextArea(8,10)]
     public List<string> messages = new List<string>();
 }
