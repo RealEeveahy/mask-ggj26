@@ -50,7 +50,7 @@ public class AudioManager : MonoBehaviour
         soundLibrary.Add("Impact", impact);
         soundLibrary.Add("Crack", crack);
         soundLibrary.Add("GoodEnd_Theme", GoodEnd);
-        soundLibrary.Add("BandEnd_Theme", BadEnd);
+        soundLibrary.Add("BadEnd_Theme", BadEnd);
         soundLibrary.Add("NeutralEnd_Theme", NeutralEnd);
 
         //define voice profiles

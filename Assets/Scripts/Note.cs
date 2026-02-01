@@ -12,8 +12,9 @@ public class Note : MonoBehaviour
     public float noteSpeed = 2f;
     SpriteRenderer renderer = new();
     public float fretBoardWidth = 1.5f;
-    public List<String> noteSoundNames = new List<String>();
+    public List<string> noteSoundNames = new List<string>();
     public int notePitch = 1;
+    Color defaultColour;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,6 +24,7 @@ public class Note : MonoBehaviour
         noteSoundNames.Add("LuteD3");
         noteSoundNames.Add("LuteE3");
         noteSoundNames.Add("LuteF3");
+        defaultColour = renderer.color;
     }
 
     // Update is called once per frame
@@ -36,6 +38,7 @@ public class Note : MonoBehaviour
         notePitch = randomn;
         Vector3 newVector = new Vector3(notePitch * fretBoardWidth, 0, 0);
         transform.position = creatorObject.transform.position + newVector;
+        renderer.color = defaultColour;
     }
     public void PlayNote(bool isSuccessful)
     {
@@ -64,6 +67,7 @@ public class Note : MonoBehaviour
             {
                 PlayNote(true);
                 luteBehaviour.AddNoteToQueue(this);
+                ConfirmNote();
                 return;
             }
             if (busy == false)
@@ -74,6 +78,13 @@ public class Note : MonoBehaviour
                 PlayNote(false);
             }
         }
+    }
+    public void ConfirmNote()
+    {
+        Color color = renderer.color;
+        color.a = 0.75f;
+        color.b = 0.75f;
+        renderer.color = color; 
     }
     public void ChangeNoteTransparency(float value)
     {
