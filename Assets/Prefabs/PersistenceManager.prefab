@@ -115,7 +115,9 @@ MonoBehaviour:
   dt1: {fileID: 8300000, guid: 9e6fb5ba4167c7d429359b5b286b831f, type: 3}
   dt2: {fileID: 8300000, guid: 3db4397f4e96c3345893202464088bd0, type: 3}
   intro: {fileID: 8300000, guid: 0a88b29db1d56fc47a75a06ecae42197, type: 3}
-  voiceDefault: {fileID: 8300000, guid: b5af33398b6b6d8468721922a64a3db3, type: 3}
+  voiceDefault: {fileID: 8300000, guid: f55c5f8ab96995646bc3164340110cba, type: 3}
+  woosh: {fileID: 8300000, guid: ff3219f6c65ad864998d0dadf0b0fb5c, type: 3}
+  twang: {fileID: 8300000, guid: 4ee1c4db49811ca47bd0e60daabe9c65, type: 3}
   kingVoiceProfile:
   - {fileID: 8300000, guid: 928765e9680fe024ba7e3ead87c947c8, type: 3}
   - {fileID: 8300000, guid: 34156a3822409304fa054e89c5d66839, type: 3}

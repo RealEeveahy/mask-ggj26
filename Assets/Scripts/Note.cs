@@ -26,7 +26,7 @@ public class Note : MonoBehaviour
     }
     public void SetNotePosition()
     {
-        int randomn = Random.Range(1, 4);
+        int randomn = UnityEngine.Random.Range(1, 4);
         Vector3 newVector = new Vector3(randomn* fretBoardWidth, 0, 0);
         transform.position = creatorObject.transform.position + newVector;
     }
@@ -35,11 +35,11 @@ public class Note : MonoBehaviour
         Debug.Log("FallingObject.PlayNote");
         if (isSuccessful)
         {
-            // Call Audio manager to play the note.
+            GlobalManagement.instance.PlaySound("LuteC3", GlobalManagement.SoundType.SFX);
         }
         else
         {
-            // Play twang sound here.
+            GlobalManagement.instance.PlaySound("Twang", GlobalManagement.SoundType.SFX);
         }
 
     }
@@ -63,23 +63,12 @@ public class Note : MonoBehaviour
                 luteBehaviour.AddNoteToQueue(this);
                 return;
             }
-            ChangeNoteTransparency(0.5f); // Note hit the ground...
-            luteBehaviour.AddNoteToQueue(this);
-            GlobalManagement.instance.DecreaseSanity(sanityCost);
-            PlayNote(false);
             if (busy == false)
             {
-                // Play pin dropping audio.
-                int randomn2 = UnityEngine.Random.Range(1, 4);
-                try
-                {
-                    if(this.gameObject.activeSelf)
-                    StartCoroutine(RespawnNote(randomn2));
-                }
-                catch (Exception ex)
-                {
-                    Debug.Log(ex);
-                }
+                ChangeNoteTransparency(0.5f); // Note hit the ground...
+                luteBehaviour.AddNoteToQueue(this);
+                GlobalManagement.instance.DecreaseSanity(sanityCost);
+                PlayNote(false);
             }
         }
     }

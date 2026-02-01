@@ -1,6 +1,8 @@
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.Mathematics;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class LuteBehaviour : MonoBehaviour
@@ -64,14 +66,30 @@ public class LuteBehaviour : MonoBehaviour
     public void AddNoteToQueue(Note note) 
     {
         queuedNotes.Add(note);
-        StartCoroutine(QueueNote(note));
+        try
+        {
+            if (this.gameObject.activeSelf)
+                StartCoroutine(QueueNote(note));
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(ex);
+        }
     }
     IEnumerator QueueNote(Note note)
     {
         busy = true;
         yield return new WaitForSeconds(spawnTime);
-        int randomn2 = Random.Range(1, 4);
-        StartCoroutine(note.RespawnNote(randomn2));
+        int randomn2 = UnityEngine.Random.Range(1, 4);
+        try
+        {
+            if (this.gameObject.activeSelf)
+            StartCoroutine(note.RespawnNote(randomn2));
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(ex);
+        }
         queuedNotes.Remove(note);
         busy = false;
     }
