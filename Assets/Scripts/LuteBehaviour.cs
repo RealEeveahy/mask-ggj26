@@ -14,9 +14,11 @@ public class LuteBehaviour : MonoBehaviour
     public int maxNumberOfNotes = 4;
     public List<GameObject> notes = new List<GameObject>();
     public List<Note> queuedNotes = new List<Note>();
+    
     public bool busy = false;
     void Start()
     {
+        
         //task.CurrentDuration = 0f;
         //spawnPosition = transform;
         StartCoroutine(StartTask());
@@ -68,22 +70,25 @@ public class LuteBehaviour : MonoBehaviour
         queuedNotes.Add(note);
         try
         {
-            if (this.gameObject.activeSelf)
-                StartCoroutine(QueueNote(note));
+            if (this.gameObject.activeInHierarchy)
+            {
+                int randomn2 = UnityEngine.Random.Range(1, 4);
+                StartCoroutine(QueueNote(note, randomn2+ spawnTime));
+            }
         }
         catch (Exception ex)
         {
             Debug.Log(ex);
         }
     }
-    IEnumerator QueueNote(Note note)
+    IEnumerator QueueNote(Note note, float waitForSeconds)
     {
         busy = true;
-        yield return new WaitForSeconds(spawnTime);
-        int randomn2 = UnityEngine.Random.Range(1, 4);
+        yield return new WaitForSeconds(waitForSeconds);
+        
         try
         {
-            if (this.gameObject.activeSelf)
+            if (this.gameObject.activeInHierarchy)
             note.RespawnNote();
         }
         catch (Exception ex)

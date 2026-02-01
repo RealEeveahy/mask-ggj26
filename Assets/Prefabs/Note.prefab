@@ -89,7 +89,9 @@ MonoBehaviour:
   creatorObject: {fileID: 0}
   luteBehaviour: {fileID: 0}
   noteSpeed: 2
-  fretBoardWidth: 1.5
+  fretBoardWidth: 1.25
+  noteSoundNames: []
+  notePitch: 1
 --- !u!50 &5755873513134349757
 Rigidbody2D:
   serializedVersion: 5

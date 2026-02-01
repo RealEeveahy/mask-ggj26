@@ -9,14 +9,20 @@ public class Note : MonoBehaviour
     public bool busy = false;
     public GameObject creatorObject = null;
     public LuteBehaviour luteBehaviour = null;
-    public float noteSpeed = 1f;
+    public float noteSpeed = 2f;
     SpriteRenderer renderer = new();
     public float fretBoardWidth = 1.5f;
+    public List<String> noteSoundNames = new List<String>();
+    public int notePitch = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
        renderer = GetComponentInChildren<SpriteRenderer>();
        luteBehaviour = creatorObject.GetComponent<LuteBehaviour>();
+        noteSoundNames.Add("LuteC3");
+        noteSoundNames.Add("LuteD3");
+        noteSoundNames.Add("LuteE3");
+        noteSoundNames.Add("LuteF3");
     }
 
     // Update is called once per frame
@@ -27,15 +33,16 @@ public class Note : MonoBehaviour
     public void SetNotePosition()
     {
         int randomn = UnityEngine.Random.Range(1, 4);
-        Vector3 newVector = new Vector3(randomn* fretBoardWidth, 0, 0);
+        notePitch = randomn;
+        Vector3 newVector = new Vector3(notePitch * fretBoardWidth, 0, 0);
         transform.position = creatorObject.transform.position + newVector;
     }
     public void PlayNote(bool isSuccessful)
     {
-        Debug.Log("FallingObject.PlayNote");
+        Debug.Log($"FallingObject.PlayNote{isSuccessful}");
         if (isSuccessful)
         {
-            GlobalManagement.instance.PlaySound("LuteC3", GlobalManagement.SoundType.SFX);
+            GlobalManagement.instance.PlaySound(noteSoundNames[notePitch], GlobalManagement.SoundType.SFX);
         }
         else
         {

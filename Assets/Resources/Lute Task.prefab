@@ -523,7 +523,7 @@ MonoBehaviour:
   notePrefab: {fileID: 3272376653636876231, guid: 8613d14c7b61b7f4596c1e9faee56fd1, type: 3}
   spawnPosition: {fileID: 9043543297911604894}
   spawnTime: 1
-  maxNumberOfNotes: 4
+  maxNumberOfNotes: 3
   notes: []
   queuedNotes: []
   busy: 0

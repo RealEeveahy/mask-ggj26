@@ -3543,6 +3543,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: PersistenceManager
       objectReference: {fileID: 0}
+    - target: {fileID: 646485137820230425, guid: 020342d8a9d4ea841a344add30d93e0b, type: 3}
+      propertyPath: intro
+      value: 
+      objectReference: {fileID: 8300000, guid: ff3219f6c65ad864998d0dadf0b0fb5c, type: 3}
+    - target: {fileID: 646485137820230425, guid: 020342d8a9d4ea841a344add30d93e0b, type: 3}
+      propertyPath: twang
+      value: 
+      objectReference: {fileID: 8300000, guid: 4ee1c4db49811ca47bd0e60daabe9c65, type: 3}
+    - target: {fileID: 646485137820230425, guid: 020342d8a9d4ea841a344add30d93e0b, type: 3}
+      propertyPath: woosh
+      value: 
+      objectReference: {fileID: 8300000, guid: ff3219f6c65ad864998d0dadf0b0fb5c, type: 3}
+    - target: {fileID: 646485137820230425, guid: 020342d8a9d4ea841a344add30d93e0b, type: 3}
+      propertyPath: voiceDefault
+      value: 
+      objectReference: {fileID: 8300000, guid: f55c5f8ab96995646bc3164340110cba, type: 3}
     - target: {fileID: 4095692631066672250, guid: 020342d8a9d4ea841a344add30d93e0b, type: 3}
       propertyPath: gamePhase
       value: 2
