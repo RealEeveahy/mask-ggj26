@@ -30,6 +30,11 @@ public class FallingObject : MonoBehaviour
         if (collision != null)
         {
             if (collision.tag == this.tag) { return; }
+            if (collision.tag == "Player")
+            {
+                Throw();
+                return;
+            }
             GetComponentInChildren<SpriteRenderer>().enabled = false;
             GlobalManagement.instance.DecreaseSanity(sanityCost);
             if (busy == false)
@@ -52,9 +57,18 @@ public class FallingObject : MonoBehaviour
 
     public void Throw()
     {
-        float randomnX = Random.value * 100;
-        float randomnY = Random.value * 100;
+        // reset velocity before applying
+        rigidObject.linearVelocityY = 0;
+
+        //calculate x value as a velocity towards the centre
+        int magnitude = transform.position.x > 0 ? -1 : 1;
+        float randomnX = Random.value * 100 * magnitude;
+
+        //random value upwards
+        float randomnY = Random.value * 100; 
+
         Vector2 randomnVector = new Vector2(randomnX, randomnY);
+        rigidObject.AddTorque(magnitude * (Random.value * 100));
         rigidObject.AddForce(Vector2.up * throwStrength + randomnVector);
         rigidObject.AddTorque(randomnX);// * Time.fixedDeltaTime);
     }
