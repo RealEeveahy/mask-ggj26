@@ -16,7 +16,6 @@ public class UIManagement : MonoBehaviour
     {
         if(useGameUI)
         {
-            tryAgainButton.onClick.AddListener(RestartDay);
             tryAgainButton.gameObject.SetActive(false);
             sanitySlider = sanityBar.GetComponent<Slider>();
             dayProgressSlider = dayProgressBar.GetComponent<Slider>();

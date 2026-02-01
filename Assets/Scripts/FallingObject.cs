@@ -45,7 +45,7 @@ public class FallingObject : MonoBehaviour
                 // Play pin dropping audio.
                 try
                 {
-                    if (this.gameObject.activeSelf)
+                    if (this.gameObject.activeInHierarchy)
                         StartCoroutine(RespawnPin());
                 }
                 catch (Exception ex)
