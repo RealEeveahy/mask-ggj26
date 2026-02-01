@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 {
     public AudioClip LuteC3, LuteD3, LuteE3, LuteF3, LuteG3, LuteA3, LuteA13, LuteC4;
     public AudioClip page1, page2;
-    public AudioClip mg1, mg2;
+    public AudioClip mg1, mg2, mg2_intro;
     public AudioClip dt1, dt2;
     public AudioClip intro, voiceDefault;
     public AudioClip woosh, twang;
@@ -39,6 +39,7 @@ public class AudioManager : MonoBehaviour
         soundLibrary.Add("page2", page2);
         soundLibrary.Add("Minigame_Theme_1", mg1);
         soundLibrary.Add("Minigame_Theme_2", mg2);
+        soundLibrary.Add("Minigame_Theme_2Intro", mg2_intro);
         soundLibrary.Add("Downtime_Intro", dt1);
         soundLibrary.Add("Downtime_Loop", dt2);
         soundLibrary.Add("Intro_Theme", intro);
@@ -66,8 +67,10 @@ public class AudioManager : MonoBehaviour
     public void SetMusic(string clipKey)
     {
         musicSource.clip = soundLibrary[clipKey];
-        if (musicSource.clip == dt1)
-            PlayDowntime();
+        if (clipKey == "Downtime_Intro")
+            PlayIntroThenLoop(clipKey, "Downtime_Loop");
+        else if (clipKey == "Minigame_Theme_2Intro" || clipKey == "Minigame_Theme_2")
+            PlayIntroThenLoop("Minigame_Theme_2Intro", "Minigame_Theme_2");
         else
             musicSource.Play();
         musicSource.volume = musicVolume;
@@ -96,20 +99,21 @@ public class AudioManager : MonoBehaviour
         //reset pitch after
         sfxSource.pitch = 1;
     }
-    public void PlayDowntime()
+    public void PlayIntroThenLoop(string introKey, string loopKey)
     {
         //play the intro for downtime
-        musicSource.clip = dt1;
+        AudioClip intro = soundLibrary[introKey];
+        musicSource.clip = intro;
         musicSource.Play();
-        StartCoroutine(ContinueToLoop(dt1.length));
+        StartCoroutine(ContinueToLoop(intro.length, intro, loopKey));
     }
-    IEnumerator ContinueToLoop(float waitTime)
+    IEnumerator ContinueToLoop(float waitTime, AudioClip original, string loopKey)
     {
         // wait until the intro section is completed,
         // then play the loop if the a new song hasnt been selected
         yield return new WaitForSeconds(waitTime);
-        if (musicSource.clip == dt1)
-            SetMusic("Downtime_Loop");
+        if (musicSource.clip == original)
+            SetMusic(loopKey);
     }
 
     public void StopAllAudio()

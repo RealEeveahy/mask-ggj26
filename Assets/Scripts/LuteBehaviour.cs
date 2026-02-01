@@ -18,10 +18,10 @@ public class LuteBehaviour : MonoBehaviour
     public bool busy = false;
     void Start()
     {
-        
         //task.CurrentDuration = 0f;
         //spawnPosition = transform;
         StartCoroutine(StartTask());
+        maxNumberOfNotes = maxNumberOfNotes * task.Difficulty;
     }
     void Update()
     {
@@ -44,6 +44,7 @@ public class LuteBehaviour : MonoBehaviour
         instantiatedPin.transform.SetParent(transform, false);
         Note instanstiatedNote = instantiatedPin.GetComponent<Note>();
         instanstiatedNote.creatorObject = this.gameObject;
+        instanstiatedNote.noteSpeed = 2 * (task.Difficulty);
         instanstiatedNote.SetNotePosition();
         return instantiatedPin;
     }
@@ -72,8 +73,7 @@ public class LuteBehaviour : MonoBehaviour
         {
             if (this.gameObject.activeInHierarchy)
             {
-                int randomn2 = UnityEngine.Random.Range(1, 4);
-                StartCoroutine(QueueNote(note, randomn2+ spawnTime));
+                StartCoroutine(QueueNote(note, spawnTime));
             }
         }
         catch (Exception ex)
