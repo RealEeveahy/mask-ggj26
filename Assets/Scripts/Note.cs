@@ -1,7 +1,9 @@
+using NUnit.Framework.Internal;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static GlobalManagement;
 public class Note : MonoBehaviour
 {
     public float sanityCost = 1f;
@@ -10,7 +12,8 @@ public class Note : MonoBehaviour
     public LuteBehaviour luteBehaviour = null;
     public float noteSpeed = 1f;
     SpriteRenderer renderer = null;
-    public float fretBoardWidth = 1.5f;
+    public float fretBoardWidth = 1.25f;
+    public int notePitch = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,7 +29,8 @@ public class Note : MonoBehaviour
     public void SetNotePosition()
     {
         int randomn = Random.Range(1, 4);
-        Vector3 newVector = new Vector3(randomn* fretBoardWidth, 0, 0);
+        notePitch = randomn;
+        Vector3 newVector = new Vector3(notePitch * fretBoardWidth, 0, 0);
         transform.position = creatorObject.transform.position + newVector;
 
     }
@@ -36,10 +40,12 @@ public class Note : MonoBehaviour
         if (isSuccessful)
         {
             // Call Audio manager to play the note.
+            GlobalManagement.instance.PlaySound("LuteC3", GlobalManagement.SoundType.SFX, false);
         }
         else
         {
             // Play twang sound here.
+            GlobalManagement.instance.PlaySound("Twang", GlobalManagement.SoundType.SFX, false);
         }
 
     }

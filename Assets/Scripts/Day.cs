@@ -48,7 +48,7 @@ public class Day
     }
     public ITask GenerateTask()
     {
-        int random = 1;//(Random.Range(1, 2)); //temporarily juggle only
+        int random = (Random.Range(0, 2)); //temporarily juggle only
         switch (random)
         {
             case 0:

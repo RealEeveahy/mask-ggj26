@@ -33,6 +33,7 @@ public class FallingObject : MonoBehaviour
             if (collision.tag == "Player")
             {
                 Throw();
+                GlobalManagement.instance.PlaySound("Voice", GlobalManagement.SoundType.SFX,true);
                 return;
             }
             GetComponentInChildren<SpriteRenderer>().enabled = false;
