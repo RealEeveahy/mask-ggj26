@@ -21,7 +21,7 @@ public class CutsceneManagement : MonoBehaviour
             // logic
             if (sceneSubIndex < scene.sceneList[sceneIndex].messages.Count)
             {
-                if (GlobalManagement.instance.SetMessage(scene.sceneList[sceneIndex].messages[sceneSubIndex]))
+                if (GlobalManagement.instance.SetMessage(scene.sceneList[sceneIndex].messages[sceneSubIndex], "Jester"))
                 {
                     sceneSubIndex++;
                     imageField.sprite = scene.sceneList[sceneIndex].sceneImage;

@@ -10,8 +10,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip mg1, mg2;
     public AudioClip dt1, dt2;
     public AudioClip intro, voiceDefault;
-    public AudioClip twang;
+
     public List<AudioClip> kingVoiceProfile = new List<AudioClip>();
+    public List<AudioClip> queenVoiceProfile = new List<AudioClip>();
+    public List<AudioClip> jesterVoiceProfile = new List<AudioClip>();
+
     private Dictionary<string, AudioClip> soundLibrary = new Dictionary<string, AudioClip>();
     private Dictionary<string, List<AudioClip>> profiles = new Dictionary<string, List<AudioClip>>();
     public AudioSource musicSource, sfxSource;
@@ -35,10 +38,11 @@ public class AudioManager : MonoBehaviour
         soundLibrary.Add("Downtime_Loop", dt2);
         soundLibrary.Add("Intro_Theme", intro);
         soundLibrary.Add("Voice", voiceDefault);
-        soundLibrary.Add("Twang", twang);
 
         //define voice profiles
         profiles.Add("King", kingVoiceProfile);
+        profiles.Add("Queen", queenVoiceProfile);
+        profiles.Add("Jester", jesterVoiceProfile);
 
         //set default music
         SetMusic("Intro_Theme");

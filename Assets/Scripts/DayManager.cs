@@ -56,17 +56,17 @@ public class DayManager : MonoBehaviour
 
             GameObject toRender = Resources.Load<GameObject>(path);
             GameObject instTask = Instantiate(toRender);
-            if (instTask.GetComponent<JuggleBehaviour>() ==null)
-            {
-                instTask.GetComponent<LuteBehaviour>().task = nextTask;
-            }
-            else if (instTask.GetComponent<WheelBehaviour>() == null)
+            if (instTask.GetComponent<JuggleBehaviour>() !=null)
             {
                 instTask.GetComponent<JuggleBehaviour>().task = nextTask;
             }
-            else if (instTask.GetComponent<JuggleBehaviour>() == null)
+            else if (instTask.GetComponent<WheelBehaviour>() != null)
             {
                 instTask.GetComponent<WheelBehaviour>().task = nextTask;
+            }
+            else if (instTask.GetComponent<LuteBehaviour>() != null)
+            {
+                instTask.GetComponent<LuteBehaviour>().task = nextTask;
             }
             instTask.transform.SetParent(TaskParent.transform);
 
@@ -74,7 +74,7 @@ public class DayManager : MonoBehaviour
         }
         else
         {
-            GlobalManagement.instance.SetMessage("That's quite enough for one day. Get out of here!");
+            GlobalManagement.instance.SetMessage("That's quite enough for one day. Get out of here!", "King");
             inDialogue = true;
             hasSeenCompleteMessage = true;
         }
@@ -94,11 +94,14 @@ public class DayManager : MonoBehaviour
 
         sceneOverlay.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
 
+        int r = UnityEngine.Random.Range(0, 2);
+        string speaker = r == 0 ? "King" : "Queen";
+
         float s = GlobalManagement.instance.CurrentPlayerSanity();
         if(s >= 0.6f)
-            GlobalManagement.instance.SetMessage(GoodDialogue[UnityEngine.Random.Range(0, GoodDialogue.Count)]);
+            GlobalManagement.instance.SetMessage(GoodDialogue[UnityEngine.Random.Range(0, GoodDialogue.Count)], speaker);
         else
-            GlobalManagement.instance.SetMessage(BadDialogue[UnityEngine.Random.Range(0, BadDialogue.Count)]);
+            GlobalManagement.instance.SetMessage(BadDialogue[UnityEngine.Random.Range(0, BadDialogue.Count)], speaker);
         inDialogue = true;
     }
     public void OnClick()
