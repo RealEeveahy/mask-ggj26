@@ -75,6 +75,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6046f3b6a26cce34ab61ac20404c6439, type: 2}
   gamePhase: 0
   currentDay: 0
+  badEndActive: 0
 --- !u!114 &5466307628218945587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,8 +156,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 844d693ac22eba646ac91aa3f65fd45e, type: 3}
   - {fileID: 8300000, guid: 121d44cab4c374c47adb86054333fe78, type: 3}
   - {fileID: 8300000, guid: 889f22da8f4956f458ebf243a518bf2f, type: 3}
+  luteProfile:
+  - {fileID: 8300000, guid: ab6693566beee3946aceeb9685d5e919, type: 3}
+  - {fileID: 8300000, guid: 5475db0617d39b9409d2f5b60855b829, type: 3}
+  - {fileID: 8300000, guid: 3f2a7ccc2305c2647a2ab4df08442a90, type: 3}
+  - {fileID: 8300000, guid: 2627d854178894647b67caaa58c754b0, type: 3}
+  - {fileID: 8300000, guid: 825d2f4d9d5b9fe498fe9b70b10119e6, type: 3}
+  - {fileID: 8300000, guid: a3c4dff2b416b024a84967c0cdd6c716, type: 3}
+  - {fileID: 8300000, guid: cbe086b30123dd54da46ca4b9012b22d, type: 3}
+  - {fileID: 8300000, guid: 203c425bfafa0ce43b86a4ce46da5e20, type: 3}
   musicSource: {fileID: 8128495606783710869}
   sfxSource: {fileID: 9025161042497640160}
+  musicVolume: 0.7
+  sfxVolume: 1
 --- !u!82 &3251319910021783357
 AudioSource:
   m_ObjectHideFlags: 0

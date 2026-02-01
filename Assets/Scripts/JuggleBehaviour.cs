@@ -11,15 +11,18 @@ public class JuggleBehaviour : MonoBehaviour
     public GameObject pinPrefab;
     public Transform spawnPosition = null;
     public float spawnTime = 1f;
-    public int numberOfPins = 3;
+    public int numberOfPins = 1;
     public List<GameObject> pins = new List<GameObject>();
 
     void Start()
     {
+        Debug.Log($"Task difficulty = {task.Difficulty}");
+
         spawnPosition = transform;
         StartCoroutine(StartTask());
 
         numberOfPins = numberOfPins * task.Difficulty;
+        Debug.Log($"Number of Pins = {numberOfPins}");
         spawnTime = 1.1f - (task.Difficulty * 0.1f);
     }
     void Update()

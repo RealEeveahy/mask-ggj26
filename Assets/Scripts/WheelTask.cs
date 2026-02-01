@@ -9,8 +9,9 @@ public class WheelTask : ITask
     public bool TaskComplete { get; set; }
     public GameObject View { get; set; }
     public int Difficulty { get; set; }
-    public WheelTask(float duration)
+    public WheelTask(float duration, int diff)
     {
+        Difficulty = diff;
         Duration = duration;
         PrefabPath = "Wheel Task";
     }

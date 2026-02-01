@@ -788,7 +788,7 @@ MonoBehaviour:
   pinPrefab: {fileID: 3272376653636876231, guid: ab9e20b546f30814594970c1cd519a3b, type: 3}
   spawnPosition: {fileID: 9043543297911604894}
   spawnTime: 1
-  numberOfPins: 3
+  numberOfPins: 1
   pins: []
 --- !u!1 &6810158880258898270
 GameObject:

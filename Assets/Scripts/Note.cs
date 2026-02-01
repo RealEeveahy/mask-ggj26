@@ -13,17 +13,19 @@ public class Note : MonoBehaviour
     SpriteRenderer renderer = new();
     public float fretBoardWidth = 1.5f;
     public List<string> noteSoundNames = new List<string>();
-    public int notePitch = 1;
+    public int notePitch = 0;
     Color defaultColour;
+    public Vector3 respawnPoint = Vector3.zero;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
        renderer = GetComponentInChildren<SpriteRenderer>();
        luteBehaviour = creatorObject.GetComponent<LuteBehaviour>();
+        respawnPoint = luteBehaviour.spawnPosition.position;
         noteSoundNames.Add("LuteC3");
-        noteSoundNames.Add("LuteD3");
         noteSoundNames.Add("LuteE3");
-        noteSoundNames.Add("LuteF3");
+        noteSoundNames.Add("LuteG3");
+        noteSoundNames.Add("LuteC4");
         defaultColour = renderer.color;
     }
 
@@ -34,17 +36,19 @@ public class Note : MonoBehaviour
     }
     public void SetNotePosition()
     {
-        int randomn = UnityEngine.Random.Range(1, 4);
+        int randomn = UnityEngine.Random.Range(0, 3);
         notePitch = randomn;
         Vector3 newVector = new Vector3(notePitch * fretBoardWidth, 0, 0);
-        transform.position = creatorObject.transform.position + newVector;
+        transform.position = respawnPoint + newVector;
         renderer.color = defaultColour;
+        GetComponent<Collider2D>().enabled = true;
     }
     public void PlayNote(bool isSuccessful)
     {
         Debug.Log($"FallingObject.PlayNote{isSuccessful}");
         if (isSuccessful)
         {
+            //GlobalManagement.instance.PlaySound("Lute", GlobalManagement.SoundType.SFX);
             GlobalManagement.instance.PlaySound(noteSoundNames[notePitch], GlobalManagement.SoundType.SFX);
         }
         else
@@ -63,19 +67,22 @@ public class Note : MonoBehaviour
         if (collision != null)
         {
             if (collision.tag == this.tag) { return; } // Ignore other notes.
-            if (collision.tag == "Player" && busy == false ) // Player successfully hit note.
-            {
-                PlayNote(true);
-                luteBehaviour.AddNoteToQueue(this);
-                ConfirmNote();
-                return;
-            }
             if (busy == false)
             {
-                ChangeNoteTransparency(0.5f); // Note hit the ground...
-                luteBehaviour.AddNoteToQueue(this);
-                GlobalManagement.instance.DecreaseSanity(sanityCost);
-                PlayNote(false);
+                GetComponent<Collider2D>().enabled = false;
+                if (collision.tag == "Player") // Player successfully hit note.
+                {
+                    PlayNote(true);
+                    luteBehaviour.AddNoteToQueue(this);
+                    ConfirmNote();
+                    return;
+                } else if (collision.tag == "Ground")
+                {
+                    ChangeNoteTransparency(0.2f); // Note hit the ground...
+                    luteBehaviour.AddNoteToQueue(this);
+                    GlobalManagement.instance.DecreaseSanity(sanityCost);
+                    PlayNote(false);
+                }
             }
         }
     }

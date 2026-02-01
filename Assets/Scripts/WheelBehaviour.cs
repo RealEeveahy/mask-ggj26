@@ -21,6 +21,9 @@ public class WheelBehaviour : MonoBehaviour
 
     void Start()
     {
+        //Debug.Log($"Task difficulty = {task.Difficulty}");
+        //maxNumberOfSwords = 3 * task.Difficulty;
+        //Debug.Log($"Number of Pins = {maxNumberOfSwords}");
         StartCoroutine(StartTask());
         rigidBody = playerObject.GetComponent<Rigidbody2D>();
     }
@@ -47,12 +50,14 @@ public class WheelBehaviour : MonoBehaviour
             return null;
         }
         GameObject instantiatedSword = Instantiate(swordPrefab, spawnPosition);
+        Sword sword = instantiatedSword.GetComponent<Sword>();
         instantiatedSword.transform.SetParent(transform, true);
-        int randomn = Random.Range(0, targets.Count); 
-        instantiatedSword.GetComponent<Sword>().swordLandingPoint = targets[randomn];
+        //sword.speed = 5 * task.Difficulty;
+        int randomn = Random.Range(0, targets.Count);
+        sword.swordLandingPoint = targets[randomn];
         Vector2 differenceVector = targets[randomn].position - playerObject.transform.position;
         instantiatedSword.transform.position = differenceVector* spawnRadius;
-        instantiatedSword.GetComponent<Sword>().creatorObject = this.gameObject;
+        sword.creatorObject = this.gameObject;
         return instantiatedSword;
     }
     IEnumerator StartTask()

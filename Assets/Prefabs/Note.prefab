@@ -70,7 +70,7 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.93, y: 2}
+  m_Size: {x: 1.04, y: 2}
   m_Direction: 0
 --- !u!114 &3599780078874942555
 MonoBehaviour:
@@ -89,9 +89,10 @@ MonoBehaviour:
   creatorObject: {fileID: 0}
   luteBehaviour: {fileID: 0}
   noteSpeed: 2
-  fretBoardWidth: 1.25
+  fretBoardWidth: 1
   noteSoundNames: []
-  notePitch: 1
+  notePitch: 0
+  respawnPoint: {x: 0, y: 0, z: 0}
 --- !u!50 &5755873513134349757
 Rigidbody2D:
   serializedVersion: 5

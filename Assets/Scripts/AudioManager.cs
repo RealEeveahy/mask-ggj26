@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     public List<AudioClip> kingVoiceProfile = new List<AudioClip>();
     public List<AudioClip> queenVoiceProfile = new List<AudioClip>();
     public List<AudioClip> jesterVoiceProfile = new List<AudioClip>();
+    public List<AudioClip> luteProfile = new List<AudioClip>();
 
     private Dictionary<string, AudioClip> soundLibrary = new Dictionary<string, AudioClip>();
     private Dictionary<string, List<AudioClip>> profiles = new Dictionary<string, List<AudioClip>>();
@@ -60,6 +61,7 @@ public class AudioManager : MonoBehaviour
         profiles.Add("King", kingVoiceProfile);
         profiles.Add("Queen", queenVoiceProfile);
         profiles.Add("Jester", jesterVoiceProfile);
+        profiles.Add("Lute", luteProfile);
 
         //set default music
         SetMusic("Intro_Theme");
