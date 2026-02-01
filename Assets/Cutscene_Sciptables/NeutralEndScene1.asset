@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900611bd675aabc4cb823cd20d50ee0b, type: 3}
   m_Name: NeutralEndScene1
   m_EditorClassIdentifier: Assembly-CSharp::IScene
-  sceneImage: {fileID: 605162050437240712, guid: c0b1af66e0a9f2243bfa6541689bd768, type: 3}
+  sceneImage: {fileID: 1884986408517061873, guid: 96678b7f781d60d4fac88b95617f26e6, type: 3}
   messages:
   - While I was descent at my job, the King and Queen soon grew tired of me.
   - They replaced, and discarded, me without a second thought.

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: GoodOutcomeGroup
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneGroup
   sceneList:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 970eb79ccdb2cc547aea7c2a1a7b03ff, type: 2}
   description: 
