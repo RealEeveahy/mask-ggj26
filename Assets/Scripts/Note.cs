@@ -10,12 +10,12 @@ public class Note : MonoBehaviour
     public GameObject creatorObject = null;
     public LuteBehaviour luteBehaviour = null;
     public float noteSpeed = 1f;
-    SpriteRenderer renderer = null;
+    SpriteRenderer renderer = new();
     public float fretBoardWidth = 1.5f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        renderer = GetComponentInChildren<SpriteRenderer>();
+       renderer = GetComponentInChildren<SpriteRenderer>();
        luteBehaviour = creatorObject.GetComponent<LuteBehaviour>();
     }
 

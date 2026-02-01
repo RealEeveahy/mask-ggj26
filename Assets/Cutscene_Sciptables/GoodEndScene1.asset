@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900611bd675aabc4cb823cd20d50ee0b, type: 3}
   m_Name: GoodEndScene1
   m_EditorClassIdentifier: Assembly-CSharp::IScene
-  sceneImage: {fileID: 9083969447635318612, guid: d05bddff1fbd2494fa3f652b0becac49, type: 3}
+  sceneImage: {fileID: 8172058765175349608, guid: cf4c1e3a24ae81744aba4f1b6d6f4863, type: 3}
   messages:
   - After the party word soon spread of my work as a court jester.
   - Mostly thanks to the King and Queen, and the high praises they had sung of me.

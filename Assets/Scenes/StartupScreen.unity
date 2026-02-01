@@ -1172,10 +1172,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PersistenceManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4095692631066672250, guid: 020342d8a9d4ea841a344add30d93e0b, type: 3}
-      propertyPath: NeutralEnding
-      value: 
-      objectReference: {fileID: 11400000, guid: 13a3618339a740f41a390a6fe82950b1, type: 2}
     - target: {fileID: 6096369221958377870, guid: 020342d8a9d4ea841a344add30d93e0b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1267,7 +1263,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -89}
+  m_AnchoredPosition: {x: 0, y: -141}
   m_SizeDelta: {x: -680, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1611599661
@@ -1621,7 +1617,6 @@ RectTransform:
   - {fileID: 496075703}
   - {fileID: 1466486401}
   - {fileID: 1196483073}
-  - {fileID: 1611599660}
   - {fileID: 344752330}
   - {fileID: 1784054056}
   - {fileID: 695940817}
@@ -1629,6 +1624,7 @@ RectTransform:
   - {fileID: 290680839}
   - {fileID: 269122693}
   - {fileID: 2119086738}
+  - {fileID: 1611599660}
   - {fileID: 318642842}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

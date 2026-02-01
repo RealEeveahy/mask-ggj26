@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 945944a6e86b134468cfdc8a36bfbb8d, type: 3}
-  m_Name: GoodPerformanceGroup
+  m_Name: BadOutcome1
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneGroup
   sceneList:
-  - {fileID: 11400000, guid: 3b5ff490cb5dae44e926c7df44c93c60, type: 2}
+  - {fileID: 11400000, guid: f102ce8836428984094e3192610616be, type: 2}
   description: 
