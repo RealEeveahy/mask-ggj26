@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 
 /// <summary>
 /// Singleton Class. <br></br>
@@ -72,9 +73,15 @@ public class GlobalManagement : MonoBehaviour
     {
         FindFirstObjectByType<DayManager>().PlayerDeath();
     }
-    public void PlaySound(string key, SoundType type)
+    public void PlaySound(string key, SoundType type, bool randomise = false)
     {
-        if (type == SoundType.SFX) audioManager.PlaySoundEffect(key);
+        if (type == SoundType.SFX)
+        {
+            if (randomise)
+                audioManager.PlaySoundRandomPitch(key);
+            else
+                audioManager.PlaySoundEffect(key);
+        }
         else if (type == SoundType.MUSIC) audioManager.SetMusic(key);
     }
     public void OnSceneSwitch()
@@ -89,6 +96,8 @@ public class GlobalManagement : MonoBehaviour
             GetComponent<TextManagement>().ConversationTextField = FindFirstObjectByType<TMP_Text>();
             if (gamePhase == Phase.Story)
             {
+                audioManager.SetMusic("Downtime_Intro");
+
                 CutsceneManagement c_mgr = FindFirstObjectByType<CutsceneManagement>();
                 c_mgr.scene = Queue[currentDay];
                 c_mgr.ServeNext();
@@ -97,6 +106,10 @@ public class GlobalManagement : MonoBehaviour
             }
             else if (gamePhase == Phase.Minigame)
             {
+                int r = Random.Range(0, 2);
+                string phaseMusic = r == 0 ? "Minigame_Theme_1" : "Minigame_Theme_2";
+                audioManager.SetMusic(phaseMusic);
+
                 ui_mgr = FindFirstObjectByType<UIManagement>();
                 ui_mgr.DayProgressConfig(GetDay().tasks.Count);
                 // change later
