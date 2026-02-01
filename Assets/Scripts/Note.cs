@@ -12,7 +12,7 @@ public class Note : MonoBehaviour
     public float noteSpeed = 2f;
     SpriteRenderer renderer = new();
     public float fretBoardWidth = 1.5f;
-    public List<String> noteSoundNames = new List<String>();
+    public List<string> noteSoundNames = new List<string>();
     public int notePitch = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
