@@ -9,7 +9,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip page1, page2;
     public AudioClip mg1, mg2;
     public AudioClip dt1, dt2;
+    public AudioClip intro, voiceDefault;
+    public List<AudioClip> kingVoiceProfile = new List<AudioClip>();
     private Dictionary<string, AudioClip> soundLibrary = new Dictionary<string, AudioClip>();
+    private Dictionary<string, List<AudioClip>> profiles = new Dictionary<string, List<AudioClip>>();
     public AudioSource musicSource, sfxSource;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,9 +32,14 @@ public class AudioManager : MonoBehaviour
         soundLibrary.Add("Minigame_Theme_2", mg2);
         soundLibrary.Add("Downtime_Intro", dt1);
         soundLibrary.Add("Downtime_Loop", dt2);
+        soundLibrary.Add("Intro_Theme", intro);
+        soundLibrary.Add("Voice", voiceDefault);
+
+        //define voice profiles
+        profiles.Add("King", kingVoiceProfile);
 
         //set default music
-        SetMusic("Minigame_Theme_1");
+        SetMusic("Intro_Theme");
     }
     public void SetMusic(string clipKey)
     {
@@ -55,7 +63,7 @@ public class AudioManager : MonoBehaviour
         }
         sfxSource.PlayOneShot(toPlay);
     }
-    public void PlaySoundRandomPitch(string clipKey)
+    public void PlaySoundRandomPitch(string profile)
     {
         int randCoefficient = UnityEngine.Random.Range(-1, 1);
         if (randCoefficient == 0) randCoefficient = 1;
@@ -63,7 +71,10 @@ public class AudioManager : MonoBehaviour
         sfxSource.pitch = 
             (UnityEngine.Random.value + UnityEngine.Random.Range(0,3)) 
             * randCoefficient;
-        sfxSource.PlayOneShot(soundLibrary[clipKey]);
+
+        int profileSize = profiles[profile].Count;
+        AudioClip toPlay = profiles[profile][UnityEngine.Random.Range(0, profileSize)];
+        sfxSource.PlayOneShot(toPlay);
 
         //reset pitch after
         sfxSource.pitch = 1;
@@ -82,5 +93,12 @@ public class AudioManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         if (musicSource.clip == dt1)
             SetMusic("Downtime_Loop");
+    }
+
+    public void StopAllAudio()
+    {
+        musicSource.clip = null;
+        musicSource.gameObject.SetActive(false);
+        //sfxSource.gameObject.SetActive(false);
     }
 }

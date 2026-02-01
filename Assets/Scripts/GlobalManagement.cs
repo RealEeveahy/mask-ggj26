@@ -14,7 +14,18 @@ public class GlobalManagement : MonoBehaviour
 {
     public GameObject overlay;
     public static GlobalManagement instance { get; private set; }
+
+    public CutsceneGroup introduction;
+    public CutsceneGroup GoodEnding;
+    public CutsceneGroup NeutralEnding;
+    public CutsceneGroup BadEnding;
+
+    public CutsceneGroup GoodPerformance;
+    public CutsceneGroup BadPerformance;
+
+    private CutsceneGroup nextCutscene;
     public List<CutsceneGroup> Queue = new List<CutsceneGroup>();
+
     AudioManager audioManager;
     UIManagement ui_mgr;
     TextManagement textManager;
@@ -63,6 +74,24 @@ public class GlobalManagement : MonoBehaviour
     // move the next few methods to other management classes later
     public void ShowNextCutscene()
     {
+        // logic to calculate cutscene here
+        //if final day
+        if (nextCutscene == null)
+        {
+            nextCutscene = introduction;
+        }
+        else
+        {
+            if (CurrentPlayerSanity() > 0.6f)
+                nextCutscene = GoodEnding;
+            else if (CurrentPlayerSanity() <= 0.05f)
+                nextCutscene = BadEnding; // only achievable by losing on the final level
+            else
+                nextCutscene = NeutralEnding;
+        }
+
+        gamePhase = Phase.Story;
+
         StartCoroutine(LoadScene("StoryScene"));
     }
     public void ShowNextDay()
@@ -72,6 +101,15 @@ public class GlobalManagement : MonoBehaviour
     public void RoundLoss()
     {
         FindFirstObjectByType<DayManager>().PlayerDeath();
+        ui_mgr.tryAgainButton.gameObject.SetActive(true);
+        audioManager.StopAllAudio();
+
+    }
+    // initiated by the try again button
+    public void RestartDay()
+    {
+        GetComponent<PlayerData>().Sanity = 0.8f;
+        StartCoroutine(LoadScene("SampleScene"));
     }
     public void PlaySound(string key, SoundType type, bool randomise = false)
     {
@@ -99,7 +137,7 @@ public class GlobalManagement : MonoBehaviour
                 audioManager.SetMusic("Downtime_Intro");
 
                 CutsceneManagement c_mgr = FindFirstObjectByType<CutsceneManagement>();
-                c_mgr.scene = Queue[currentDay];
+                c_mgr.scene = nextCutscene;
                 c_mgr.ServeNext();
 
                 gamePhase = Phase.Minigame;
@@ -125,8 +163,6 @@ public class GlobalManagement : MonoBehaviour
                     ui_mgr.UpdateProgress(value);
                 };
                 StartCoroutine(day_mgr.Initiate());
-
-                gamePhase = Phase.Story;
             }
         }
     }

@@ -14,6 +14,7 @@ public class DayManager : MonoBehaviour
     public GameObject PlayerDeathSprite;
     public EventHandler<int> OnProgressChanged;
     int _tasksCompleted = 0;
+    bool isDead = false;
     public int TasksCompleted
     {
         get { return _tasksCompleted; }
@@ -43,7 +44,7 @@ public class DayManager : MonoBehaviour
     public void ShowNextTask()
     {
         inDialogue = false;
-        if (TasksCompleted < GlobalManagement.instance.GetDay().tasks.Count)
+        if (TasksCompleted < GlobalManagement.instance.GetDay().tasks.Count && !isDead)
         {
             sceneOverlay.SetActive(true);
             sceneOverlay.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.8f);
@@ -93,41 +94,50 @@ public class DayManager : MonoBehaviour
 
         sceneOverlay.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
 
-        GlobalManagement.instance.SetMessage(GoodDialogue[UnityEngine.Random.Range(0, GoodDialogue.Count)]);
+        float s = GlobalManagement.instance.CurrentPlayerSanity();
+        if(s >= 0.6f)
+            GlobalManagement.instance.SetMessage(GoodDialogue[UnityEngine.Random.Range(0, GoodDialogue.Count)]);
+        else
+            GlobalManagement.instance.SetMessage(BadDialogue[UnityEngine.Random.Range(0, BadDialogue.Count)]);
         inDialogue = true;
     }
     public void OnClick()
     {
-        if(inDialogue)
+        if (!isDead)
         {
-            // clicked during a conversation
-            if (GlobalManagement.instance.EndMessage())
+            if (inDialogue)
             {
-                if (hasSeenCompleteMessage)
+                // clicked during a conversation
+                if (GlobalManagement.instance.EndMessage())
                 {
-                    GlobalManagement.instance.DayComplete();
-                    inDialogue = false;
+                    if (hasSeenCompleteMessage)
+                    {
+                        GlobalManagement.instance.DayComplete();
+                        inDialogue = false;
+                    }
+                    else
+                        ShowNextTask();
                 }
-                else
-                    ShowNextTask();
             }
-        }
-        else
-        {
-            // clicked during minigame
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero);
-            if (hit)
+            else
             {
-                if (hit.transform.gameObject.CompareTag("Pin"))
-                    hit.transform.gameObject.SendMessage("Throw");
+                // clicked during minigame
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero);
+                if (hit)
+                {
+                    if (hit.transform.gameObject.CompareTag("Pin"))
+                        hit.transform.gameObject.SendMessage("Throw");
+                }
             }
         }
     }
     public void PlayerDeath()
     {
+        ClearTaskParent();
         TaskParent.SetActive(false);
         PlayerDeathSprite.SetActive(true);
         sceneOverlay.SetActive(true);
         sceneOverlay.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+        isDead = true;
     }
 }

@@ -9,7 +9,7 @@ public class TextManagement : MonoBehaviour
     public bool isBusy { get { return busy; } }
     public TMP_Text ConversationTextField;
     public GameObject textParent;
-    bool holdVocals = false;
+    bool soundCooldown = false;
     private void Awake()
     {
         if(ConversationTextField == null)
@@ -39,13 +39,11 @@ public class TextManagement : MonoBehaviour
             // control for html tags (bold, colour, etc)
 
             //play a pitch randomised sound
-            if (!holdVocals)
+            if (!soundCooldown)
             {
-                GlobalManagement.instance.PlaySound("LuteE3", GlobalManagement.SoundType.SFX, true);
-                holdVocals = true;
+                GlobalManagement.instance.PlaySound("King", GlobalManagement.SoundType.SFX, true);
+                StartCoroutine(SoundCD());
             }
-            else
-                holdVocals = false;
 
             yield return new WaitForSeconds(_printTime);
         }
@@ -64,5 +62,11 @@ public class TextManagement : MonoBehaviour
     {
         busy = false;
         textParent.SetActive(false);
+    }
+    IEnumerator SoundCD()
+    {
+        soundCooldown = true;
+        yield return new WaitForSeconds(0.15f);
+        soundCooldown = false;
     }
 }

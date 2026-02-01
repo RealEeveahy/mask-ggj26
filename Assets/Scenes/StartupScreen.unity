@@ -1172,6 +1172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PersistenceManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4095692631066672250, guid: 020342d8a9d4ea841a344add30d93e0b, type: 3}
+      propertyPath: NeutralEnding
+      value: 
+      objectReference: {fileID: 11400000, guid: 13a3618339a740f41a390a6fe82950b1, type: 2}
     - target: {fileID: 6096369221958377870, guid: 020342d8a9d4ea841a344add30d93e0b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
