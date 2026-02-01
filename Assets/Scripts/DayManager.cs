@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -89,20 +88,24 @@ public class DayManager : MonoBehaviour
     IEnumerator ElapseTask(float time)
     {
         yield return new WaitForSeconds(time);
-        ClearTaskParent();
-        TasksCompleted++;
 
-        sceneOverlay.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        if (!isDead)
+        {
+            ClearTaskParent();
+            TasksCompleted++;
 
-        int r = UnityEngine.Random.Range(0, 2);
-        string speaker = r == 0 ? "King" : "Queen";
+            sceneOverlay.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
 
-        float s = GlobalManagement.instance.CurrentPlayerSanity();
-        if(s >= 0.6f)
-            GlobalManagement.instance.SetMessage(GoodDialogue[UnityEngine.Random.Range(0, GoodDialogue.Count)], speaker);
-        else
-            GlobalManagement.instance.SetMessage(BadDialogue[UnityEngine.Random.Range(0, BadDialogue.Count)], speaker);
-        inDialogue = true;
+            int r = UnityEngine.Random.Range(0, 2);
+            string speaker = r == 0 ? "King" : "Queen";
+
+            float s = GlobalManagement.instance.CurrentPlayerSanity();
+            if (s >= 0.6f)
+                GlobalManagement.instance.SetMessage(GoodDialogue[UnityEngine.Random.Range(0, GoodDialogue.Count)], speaker);
+            else
+                GlobalManagement.instance.SetMessage(BadDialogue[UnityEngine.Random.Range(0, BadDialogue.Count)], speaker);
+            inDialogue = true;
+        }
     }
     public void OnClick()
     {

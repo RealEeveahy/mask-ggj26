@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900611bd675aabc4cb823cd20d50ee0b, type: 3}
   m_Name: Intro1
   m_EditorClassIdentifier: Assembly-CSharp::IScene
-  sceneImage: {fileID: 8172058765175349608, guid: 720f03562040aff47ab7d8c189e8d39c, type: 3}
+  sceneImage: {fileID: -1712671758252176570, guid: 08215602de163aa4ea6c550d116355ea, type: 3}
   messages:
   - Out of the hundreds that lined the halls, I was the one that was chosen.
   - Somehow, out of everyone that auditioned to become the new court jester, I was

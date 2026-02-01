@@ -20,18 +20,17 @@ public class GlobalManagement : MonoBehaviour
     public CutsceneGroup NeutralEnding;
     public CutsceneGroup BadEnding;
 
-    public CutsceneGroup GoodPerformance;
-    public CutsceneGroup BadPerformance;
+    public List<CutsceneGroup> GoodPerformanceByDay;
+    public List<CutsceneGroup> BadPerformanceByDay;
 
     private CutsceneGroup nextCutscene;
-    public List<CutsceneGroup> Queue = new List<CutsceneGroup>();
 
     AudioManager audioManager;
     UIManagement ui_mgr;
     TextManagement textManager;
 
     // variables to track game state
-    public enum Phase { Intro, Story, Minigame }
+    public enum Phase { Intro, Story, Minigame, Ending }
     public Phase gamePhase;
     public enum SoundType { SFX, MUSIC }
     public int currentDay = 0;
@@ -70,6 +69,7 @@ public class GlobalManagement : MonoBehaviour
     {
         currentDay += 1;
         ui_mgr.fadeOverlay.GetComponent<FadingElement>().FadeOut(ShowNextCutscene);
+        GetComponent<PlayerData>().Sanity += 0.2f; //award sanity for completing level
     }
     // move the next few methods to other management classes later
     public void ShowNextCutscene()
@@ -79,6 +79,13 @@ public class GlobalManagement : MonoBehaviour
         if (nextCutscene == null)
         {
             nextCutscene = introduction;
+        }
+        else if (currentDay < days.Count)
+        {
+            if (CurrentPlayerSanity() > 0.6f)
+                nextCutscene = GoodPerformanceByDay[0];
+            else
+                nextCutscene = BadPerformanceByDay[0];
         }
         else
         {
@@ -96,6 +103,12 @@ public class GlobalManagement : MonoBehaviour
     }
     public void ShowNextDay()
     {
+        if (currentDay == days.Count-1)
+        {
+            StartCoroutine(LoadScene("CreditScene"));
+            gamePhase = Phase.Ending;
+            return;
+        }
         StartCoroutine(LoadScene("SampleScene"));
     }
     public void RoundLoss()

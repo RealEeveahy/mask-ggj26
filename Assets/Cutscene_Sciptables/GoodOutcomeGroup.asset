@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 900611bd675aabc4cb823cd20d50ee0b, type: 3}
-  m_Name: GoodPerformance1
-  m_EditorClassIdentifier: Assembly-CSharp::IScene
-  sceneImage: {fileID: 9083969447635318612, guid: d05bddff1fbd2494fa3f652b0becac49, type: 3}
-  messages:
-  - 
+  m_Script: {fileID: 11500000, guid: 945944a6e86b134468cfdc8a36bfbb8d, type: 3}
+  m_Name: GoodOutcomeGroup
+  m_EditorClassIdentifier: Assembly-CSharp::CutsceneGroup
+  sceneList:
+  - {fileID: 0}
+  description: 

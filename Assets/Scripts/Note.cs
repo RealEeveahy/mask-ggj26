@@ -10,12 +10,12 @@ public class Note : MonoBehaviour
     public GameObject creatorObject = null;
     public LuteBehaviour luteBehaviour = null;
     public float noteSpeed = 1f;
-    SpriteRenderer renderer = null;
+    SpriteRenderer renderer = new();
     public float fretBoardWidth = 1.5f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        renderer = GetComponentInChildren<SpriteRenderer>();
+       renderer = GetComponentInChildren<SpriteRenderer>();
        luteBehaviour = creatorObject.GetComponent<LuteBehaviour>();
     }
 
@@ -26,7 +26,7 @@ public class Note : MonoBehaviour
     }
     public void SetNotePosition()
     {
-        int randomn = Random.Range(1, 4);
+        int randomn = UnityEngine.Random.Range(1, 4);
         Vector3 newVector = new Vector3(randomn* fretBoardWidth, 0, 0);
         transform.position = creatorObject.transform.position + newVector;
     }
