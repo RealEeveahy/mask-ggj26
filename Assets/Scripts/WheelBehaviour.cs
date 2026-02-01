@@ -1,7 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 using UnityEngine.InputSystem;
+using static Unity.VisualScripting.Member;
 
 public class WheelBehaviour : MonoBehaviour
 {
@@ -14,18 +15,28 @@ public class WheelBehaviour : MonoBehaviour
     public List<GameObject> swords = new List<GameObject>();
     public GameObject playerObject = null;
     public Rigidbody2D rigidBody = null;
-    public float spinStrength = 100f;
+    public float spinStrength = 500f;
     public float idleSpeed = 10f;
+    public float spawnRadius = 10f;
 
     void Start()
     {
-        spawnPosition = transform;
         StartCoroutine(StartTask());
         rigidBody = playerObject.GetComponent<Rigidbody2D>();
     }
+    float GetXPosition()
+    {
+        float mx = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()).x;
+        return mx;
+    }
+
+    void Update()
+    {
+        
+    }
     private void FixedUpdate()
     {
-        rigidBody.angularVelocity = idleSpeed;
+        rigidBody.angularVelocity = GetXPosition() * idleSpeed;
     }
     public GameObject CreateSword()
     {
@@ -36,9 +47,12 @@ public class WheelBehaviour : MonoBehaviour
             return null;
         }
         GameObject instantiatedSword = Instantiate(swordPrefab, spawnPosition);
-        instantiatedSword.transform.SetParent(transform, false);
-        int randomn = Random.Range(0, maxNumberOfSwords); 
-        instantiatedSword.transform.GetComponent<Sword>().swordLandingPoint = targets[randomn]; // how to do this a better way?
+        instantiatedSword.transform.SetParent(transform, true);
+        int randomn = Random.Range(0, targets.Count); 
+        instantiatedSword.GetComponent<Sword>().swordLandingPoint = targets[randomn];
+        Vector2 differenceVector = targets[randomn].position - playerObject.transform.position;
+        instantiatedSword.transform.position = differenceVector* spawnRadius;
+        instantiatedSword.GetComponent<Sword>().creatorObject = this.gameObject;
         return instantiatedSword;
     }
     IEnumerator StartTask()
@@ -51,6 +65,7 @@ public class WheelBehaviour : MonoBehaviour
     }
     public void OnClick()
     {
+        
         Debug.Log($"WheelBehaviour.OnClick");
         SpinWheel();
     }

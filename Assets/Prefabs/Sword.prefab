@@ -85,11 +85,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sword
   swordLandingPoint: {fileID: 0}
-  speed: 0.05
+  creatorObject: {fileID: 0}
+  speed: 10
   sanityCost: 0.05
   busy: 0
-  origin: {x: 0, y: 0, z: 0}
-  respawnTime: 2
+  origin: {fileID: 0}
+  respawnTime: 1
+  rotationSpeedZ: 100
+  rotationSpeedX: 100
+  rigidBody: {fileID: 0}
 --- !u!50 &6666956433063005483
 Rigidbody2D:
   serializedVersion: 5

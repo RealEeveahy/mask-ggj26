@@ -21,6 +21,8 @@ public class AudioManager : MonoBehaviour
     private Dictionary<string, AudioClip> soundLibrary = new Dictionary<string, AudioClip>();
     private Dictionary<string, List<AudioClip>> profiles = new Dictionary<string, List<AudioClip>>();
     public AudioSource musicSource, sfxSource;
+    public float musicVolume =0.7f;
+    public float sfxVolume = 1f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -68,6 +70,7 @@ public class AudioManager : MonoBehaviour
             PlayDowntime();
         else
             musicSource.Play();
+        musicSource.volume = musicVolume;
     }
     public void PlaySoundEffect(string clipKey)
     {
@@ -75,7 +78,7 @@ public class AudioManager : MonoBehaviour
         toPlay = soundLibrary[clipKey];
         if(toPlay == null)
             toPlay = soundLibrary["LuteC3"];  //play the lute if the sound doesnt exist
-        sfxSource.PlayOneShot(toPlay);
+        sfxSource.PlayOneShot(toPlay,sfxVolume);
     }
     public void PlaySoundRandomPitch(string profile)
     {
@@ -88,7 +91,7 @@ public class AudioManager : MonoBehaviour
 
         int profileSize = profiles[profile].Count;
         AudioClip toPlay = profiles[profile][UnityEngine.Random.Range(0, profileSize)];
-        sfxSource.PlayOneShot(toPlay);
+        sfxSource.PlayOneShot(toPlay,sfxVolume);
 
         //reset pitch after
         sfxSource.pitch = 1;

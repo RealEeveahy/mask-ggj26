@@ -34,7 +34,7 @@ public class FallingObject : MonoBehaviour
             if (collision.tag == "Player")
             {
                 Throw();
-                GlobalManagement.instance.PlaySound("Voice", GlobalManagement.SoundType.SFX);
+                GlobalManagement.instance.PlaySound("Jester", GlobalManagement.SoundType.SFX, true);
                 return;
             }
             GlobalManagement.instance.PlaySound("Woosh", GlobalManagement.SoundType.SFX);
