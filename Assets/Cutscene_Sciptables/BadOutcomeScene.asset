@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900611bd675aabc4cb823cd20d50ee0b, type: 3}
   m_Name: BadOutcomeScene
   m_EditorClassIdentifier: Assembly-CSharp::IScene
-  sceneImage: {fileID: 5546860700157396188, guid: 2bffc614c20339d4b8e5413400f3c453, type: 3}
+  sceneImage: {fileID: -7368477110438835841, guid: d6c720355a29f35408db70c398d570fe, type: 3}
   messages:
   - "That could\u2019ve gone better."
   - "\u2026"
