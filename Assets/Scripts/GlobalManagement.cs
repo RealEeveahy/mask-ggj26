@@ -173,11 +173,11 @@ public class GlobalManagement : MonoBehaviour
     /// <param name="message"></param>
     /// <returns>True if the message is successfully initiated, <br></br>
     /// False if the engine is busy displaying another message.</returns>
-    public bool SetMessage(string message)
+    public bool SetMessage(string message, string speaker = null)
     {
         if(!textManager.isBusy)
         {
-            StartCoroutine(textManager.ShowMessage(message));
+            StartCoroutine(textManager.ShowMessage(message, speaker));
             return true;
         }
         else

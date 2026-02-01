@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,7 +41,15 @@ public class FallingObject : MonoBehaviour
             if (busy == false)
             {
                 // Play pin dropping audio.
-                StartCoroutine(RespawnPin());
+                try
+                {
+                    if (this.gameObject.activeSelf)
+                        StartCoroutine(RespawnPin());
+                }
+                catch (Exception ex)
+                {
+                    Debug.Log(ex);
+                }
             }
 
         }
@@ -62,13 +71,13 @@ public class FallingObject : MonoBehaviour
 
         //calculate x value as a velocity towards the centre
         int magnitude = transform.position.x > 0 ? -1 : 1;
-        float randomnX = Random.value * 100 * magnitude;
+        float randomnX = UnityEngine.Random.value * 100 * magnitude;
 
         //random value upwards
-        float randomnY = Random.value * 100; 
+        float randomnY = UnityEngine.Random.value * 100; 
 
         Vector2 randomnVector = new Vector2(randomnX, randomnY);
-        rigidObject.AddTorque(magnitude * (Random.value * 100));
+        rigidObject.AddTorque(magnitude * (UnityEngine.Random.value * 100));
         rigidObject.AddForce(Vector2.up * throwStrength + randomnVector);
         rigidObject.AddTorque(randomnX);// * Time.fixedDeltaTime);
     }

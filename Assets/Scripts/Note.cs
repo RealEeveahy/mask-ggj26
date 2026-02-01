@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,7 +29,6 @@ public class Note : MonoBehaviour
         int randomn = Random.Range(1, 4);
         Vector3 newVector = new Vector3(randomn* fretBoardWidth, 0, 0);
         transform.position = creatorObject.transform.position + newVector;
-
     }
     public void PlayNote(bool isSuccessful)
     {
@@ -67,6 +67,20 @@ public class Note : MonoBehaviour
             luteBehaviour.AddNoteToQueue(this);
             GlobalManagement.instance.DecreaseSanity(sanityCost);
             PlayNote(false);
+            if (busy == false)
+            {
+                // Play pin dropping audio.
+                int randomn2 = UnityEngine.Random.Range(1, 4);
+                try
+                {
+                    if(this.gameObject.activeSelf)
+                    StartCoroutine(RespawnNote(randomn2));
+                }
+                catch (Exception ex)
+                {
+                    Debug.Log(ex);
+                }
+            }
         }
     }
     public void ChangeNoteTransparency(float value)

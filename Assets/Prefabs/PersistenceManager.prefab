@@ -69,6 +69,8 @@ MonoBehaviour:
   GoodEnding: {fileID: 11400000, guid: 2a35e13ea59c12a4397305b0b9ab94ea, type: 2}
   NeutralEnding: {fileID: 11400000, guid: 85d55d78e2173ee4dac77e27824161d6, type: 2}
   BadEnding: {fileID: 11400000, guid: 9d7b48f89fc2a6949be7309771db6e68, type: 2}
+  GoodPerformance: {fileID: 0}
+  BadPerformance: {fileID: 0}
   Queue:
   - {fileID: 11400000, guid: 9ba0b21eb26530c429ca5713a0df6008, type: 2}
   gamePhase: 0
@@ -107,7 +109,7 @@ MonoBehaviour:
   LuteA13: {fileID: 8300000, guid: cbe086b30123dd54da46ca4b9012b22d, type: 3}
   LuteC4: {fileID: 8300000, guid: 203c425bfafa0ce43b86a4ce46da5e20, type: 3}
   page1: {fileID: 8300000, guid: 4a1ebfd5bf68c93438704b8af5f33290, type: 3}
-  page2: {fileID: 8300000, guid: b50e03b4f86f68843bc099e2cb81efc8, type: 3}
+  page2: {fileID: 8300000, guid: 94d65a1782323eb4587193d6f79a97e4, type: 3}
   mg1: {fileID: 8300000, guid: 7a230391bf36dd9429dccf0cc2693d62, type: 3}
   mg2: {fileID: 8300000, guid: 321d9dd53456ed24dbe56acd678e6ec0, type: 3}
   dt1: {fileID: 8300000, guid: 9e6fb5ba4167c7d429359b5b286b831f, type: 3}
@@ -123,6 +125,24 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 98b753fb30a1b19479f3a6b13f587ed8, type: 3}
   - {fileID: 8300000, guid: c21c90fbc19e1a947b20f5f9844180f3, type: 3}
   - {fileID: 8300000, guid: b1245bd3869592042893edeb4d880153, type: 3}
+  queenVoiceProfile:
+  - {fileID: 8300000, guid: 194cc1febc6886c40afc520cf4c4c9c0, type: 3}
+  - {fileID: 8300000, guid: 3d23262a153a68041a5597c11800f00a, type: 3}
+  - {fileID: 8300000, guid: e2c907804bfbfb149a431a3012309684, type: 3}
+  - {fileID: 8300000, guid: c83f1294c5802584f802e7b19267cf9b, type: 3}
+  - {fileID: 8300000, guid: 32c1e482bed380546a22d27b66793aef, type: 3}
+  - {fileID: 8300000, guid: 2b92c59d517f7db4e9d4d51632aa9586, type: 3}
+  - {fileID: 8300000, guid: 94989ddb1dabec340a05b1d3c56bdeb2, type: 3}
+  - {fileID: 8300000, guid: 1b2e3f0b12d27b2489610a335a431ab7, type: 3}
+  jesterVoiceProfile:
+  - {fileID: 8300000, guid: 77a205326edf60541a764626d6a97a68, type: 3}
+  - {fileID: 8300000, guid: 0392ec922ca6d9f48b5eebc1611917ab, type: 3}
+  - {fileID: 8300000, guid: 92c5415899de13a4d9a49dd6e7bbaafe, type: 3}
+  - {fileID: 8300000, guid: bd50d1379a23ef54fad471f131efd158, type: 3}
+  - {fileID: 8300000, guid: 72bc1df29cc71194ab7b31467734e64f, type: 3}
+  - {fileID: 8300000, guid: 95f1e713cf66a5444a8d3e01a4a5bc62, type: 3}
+  - {fileID: 8300000, guid: 0fb60b116a2ee2b48afb08ebe32d18e2, type: 3}
+  - {fileID: 8300000, guid: c794a85fbc1ed104e8c460cde671ee17, type: 3}
   musicSource: {fileID: 8128495606783710869}
   sfxSource: {fileID: 9025161042497640160}
 --- !u!82 &3251319910021783357

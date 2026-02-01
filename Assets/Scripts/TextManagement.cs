@@ -17,7 +17,7 @@ public class TextManagement : MonoBehaviour
             ConversationTextField = FindFirstObjectByType<TMP_Text>(FindObjectsInactive.Include);
         }
     }
-    public IEnumerator ShowMessage(string message)
+    public IEnumerator ShowMessage(string message, string speaker = null)
     {
         // prevent overlapping calls
         busy = true;
@@ -39,9 +39,9 @@ public class TextManagement : MonoBehaviour
             // control for html tags (bold, colour, etc)
 
             //play a pitch randomised sound
-            if (!soundCooldown)
+            if (!soundCooldown && speaker != null)
             {
-                GlobalManagement.instance.PlaySound("King", GlobalManagement.SoundType.SFX, true);
+                GlobalManagement.instance.PlaySound(speaker, GlobalManagement.SoundType.SFX, true);
                 StartCoroutine(SoundCD());
             }
 

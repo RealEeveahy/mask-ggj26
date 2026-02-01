@@ -22,15 +22,4 @@ public class WheelTask : ITask
     {
         //if item is clicked use an upward force to keep object in the air.
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        CurrentDuration += Time.deltaTime;
-        if (CurrentDuration >= Duration)
-        {
-            TaskComplete = true;
-            //Day.Equals=
-        }
-    }
 }

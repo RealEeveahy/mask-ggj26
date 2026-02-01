@@ -6,8 +6,8 @@ public class HandTrack : MonoBehaviour
     float GetXPosition()
     {
         float mx = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()).x;
-        if (mx > 2.5f) mx = 2.5f;
-        if (mx < -2.5f) mx = -2.5f;
+        if (mx > 3.5f) mx = 3.5f;
+        if (mx < -3.5f) mx = -3.5f;
         return mx;
     }
 
