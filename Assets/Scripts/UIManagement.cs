@@ -9,12 +9,15 @@ public class UIManagement : MonoBehaviour
     private Slider sanitySlider;
     private Slider dayProgressSlider;
     public GameObject fadeOverlay;
+    public Button tryAgainButton;
 
     private bool useGameUI = true;
     void Awake()
     {
         if(useGameUI)
         {
+            tryAgainButton.onClick.AddListener(RestartDay);
+            tryAgainButton.gameObject.SetActive(false);
             sanitySlider = sanityBar.GetComponent<Slider>();
             dayProgressSlider = dayProgressBar.GetComponent<Slider>();
         }
@@ -48,5 +51,9 @@ public class UIManagement : MonoBehaviour
         { 
             dayProgressSlider.value = 0;
         }
+    }
+    public void RestartDay()
+    {
+        GlobalManagement.instance.RestartDay();
     }
 }
