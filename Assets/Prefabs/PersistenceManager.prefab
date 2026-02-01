@@ -116,6 +116,8 @@ MonoBehaviour:
   dt2: {fileID: 8300000, guid: 3db4397f4e96c3345893202464088bd0, type: 3}
   intro: {fileID: 8300000, guid: 91efb0ef8350ff14b8c18a8f6ca51f66, type: 3}
   voiceDefault: {fileID: 8300000, guid: 46233371047c3c642840617d6877eef2, type: 3}
+  woosh: {fileID: 8300000, guid: ff3219f6c65ad864998d0dadf0b0fb5c, type: 3}
+  twang: {fileID: 8300000, guid: 4ee1c4db49811ca47bd0e60daabe9c65, type: 3}
   kingVoiceProfile:
   - {fileID: 8300000, guid: 9eb3d49ffd6f20f4296dac39c0bdbd7f, type: 3}
   - {fileID: 8300000, guid: 46233371047c3c642840617d6877eef2, type: 3}

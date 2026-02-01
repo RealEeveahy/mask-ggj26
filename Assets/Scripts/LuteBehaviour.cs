@@ -10,7 +10,7 @@ public class LuteBehaviour : MonoBehaviour
     public ITask task;
     public GameObject notePrefab;
     public Transform spawnPosition = null;
-    public float spawnTime = 1f;
+    public float spawnTime = 2f;
     public int maxNumberOfNotes = 4;
     public List<GameObject> notes = new List<GameObject>();
     public List<Note> queuedNotes = new List<Note>();
@@ -84,7 +84,7 @@ public class LuteBehaviour : MonoBehaviour
         try
         {
             if (this.gameObject.activeSelf)
-            StartCoroutine(note.RespawnNote(randomn2));
+            note.RespawnNote();
         }
         catch (Exception ex)
         {

@@ -43,14 +43,10 @@ public class Note : MonoBehaviour
         }
 
     }
-    public IEnumerator RespawnNote(float timing)
+    public void RespawnNote()
     {
-        busy = true;
-        yield return new WaitForSeconds(timing);
         SetNotePosition();
         ChangeNoteTransparency(1f);
-        //rigidObject.linearVelocity = Vector3.zero;
-        busy = false;
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
