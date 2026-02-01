@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Collections;
 
 public class AudioManager : MonoBehaviour
 {
     public AudioClip LuteC3, LuteD3, LuteE3, LuteF3, LuteG3, LuteA3, LuteA13, LuteC4;
     public AudioClip page1, page2;
     public AudioClip mg1, mg2;
+    public AudioClip dt1, dt2;
     private Dictionary<string, AudioClip> soundLibrary = new Dictionary<string, AudioClip>();
     public AudioSource musicSource, sfxSource;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,6 +27,8 @@ public class AudioManager : MonoBehaviour
         soundLibrary.Add("page2", page2);
         soundLibrary.Add("Minigame_Theme_1", mg1);
         soundLibrary.Add("Minigame_Theme_2", mg2);
+        soundLibrary.Add("Downtime_Intro", dt1);
+        soundLibrary.Add("Downtime_Loop", dt2);
 
         //set default music
         SetMusic("Minigame_Theme_1");
@@ -32,7 +36,10 @@ public class AudioManager : MonoBehaviour
     public void SetMusic(string clipKey)
     {
         musicSource.clip = soundLibrary[clipKey];
-        musicSource.Play();
+        if (musicSource.clip == dt1)
+            PlayDowntime();
+        else
+            musicSource.Play();
     }
     public void PlaySoundEffect(string clipKey)
     {
@@ -47,5 +54,33 @@ public class AudioManager : MonoBehaviour
             toPlay = soundLibrary["LuteC3"];
         }
         sfxSource.PlayOneShot(toPlay);
+    }
+    public void PlaySoundRandomPitch(string clipKey)
+    {
+        int randCoefficient = UnityEngine.Random.Range(-1, 1);
+        if (randCoefficient == 0) randCoefficient = 1;
+
+        sfxSource.pitch = 
+            (UnityEngine.Random.value + UnityEngine.Random.Range(0,3)) 
+            * randCoefficient;
+        sfxSource.PlayOneShot(soundLibrary[clipKey]);
+
+        //reset pitch after
+        sfxSource.pitch = 1;
+    }
+    public void PlayDowntime()
+    {
+        //play the intro for downtime
+        musicSource.clip = dt1;
+        musicSource.Play();
+        StartCoroutine(ContinueToLoop(dt1.length));
+    }
+    IEnumerator ContinueToLoop(float waitTime)
+    {
+        // wait until the intro section is completed,
+        // then play the loop if the a new song hasnt been selected
+        yield return new WaitForSeconds(waitTime);
+        if (musicSource.clip == dt1)
+            SetMusic("Downtime_Loop");
     }
 }

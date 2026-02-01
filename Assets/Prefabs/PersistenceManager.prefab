@@ -108,6 +108,8 @@ MonoBehaviour:
   page2: {fileID: 8300000, guid: b50e03b4f86f68843bc099e2cb81efc8, type: 3}
   mg1: {fileID: 8300000, guid: 7a230391bf36dd9429dccf0cc2693d62, type: 3}
   mg2: {fileID: 8300000, guid: 321d9dd53456ed24dbe56acd678e6ec0, type: 3}
+  dt1: {fileID: 8300000, guid: 9e6fb5ba4167c7d429359b5b286b831f, type: 3}
+  dt2: {fileID: 8300000, guid: 3db4397f4e96c3345893202464088bd0, type: 3}
   musicSource: {fileID: 8128495606783710869}
   sfxSource: {fileID: 9025161042497640160}
 --- !u!82 &3251319910021783357
