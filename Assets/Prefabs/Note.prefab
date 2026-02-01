@@ -86,7 +86,7 @@ MonoBehaviour:
   sanityCost: 0.05
   busy: 0
   creatorObject: {fileID: 0}
-  noteSpeed: 1
+  noteSpeed: 2
 --- !u!1 &3456910762849481671
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,9 +165,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingLayerID: -1786899115
+  m_SortingLayer: 1
+  m_SortingOrder: 100
   m_MaskInteraction: 0
   m_Sprite: {fileID: -6184957895236375650, guid: 3517e39d658b4524380bdb00d60b1dff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -191,8 +191,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef198dd1fafa3af4aa4e33439986f37b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PinColour
-  sprite1: {fileID: -6184957895236375650, guid: 3517e39d658b4524380bdb00d60b1dff, type: 3}
-  sprite2: {fileID: -4364848657814777311, guid: 7ac6275ad02969e4fadaf6d7f1213316, type: 3}
+  spritelist:
+  - {fileID: 5794045672839820630, guid: d73c82f713a5c574cb6e325ee3ac5065, type: 3}
+  - {fileID: 4001578519365820225, guid: 522bf7464527ab84c9901c15eac48463, type: 3}
+  - {fileID: -6184957895236375650, guid: 3517e39d658b4524380bdb00d60b1dff, type: 3}
+  - {fileID: -4364848657814777311, guid: 7ac6275ad02969e4fadaf6d7f1213316, type: 3}
 --- !u!1 &7835534986951738126
 GameObject:
   m_ObjectHideFlags: 0

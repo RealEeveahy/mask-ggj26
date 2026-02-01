@@ -11,7 +11,8 @@ public class LuteBehaviour : MonoBehaviour
     public float spawnTime = 1f;
     public int maxNumberOfNotes = 4;
     public List<GameObject> notes = new List<GameObject>();
-
+    public List<Note> queuedNotes = new List<Note>();
+    public bool busy = false;
     void Start()
     {
         //task.CurrentDuration = 0f;
@@ -37,9 +38,9 @@ public class LuteBehaviour : MonoBehaviour
         }
         GameObject instantiatedPin = Instantiate(notePrefab, spawnPosition);
         instantiatedPin.transform.SetParent(transform, false);
-        Note objectFalling = instantiatedPin.GetComponent<Note>();
-        objectFalling.creatorObject = this.gameObject;
-        objectFalling.SetNotePosition();
+        Note instanstiatedNote = instantiatedPin.GetComponent<Note>();
+        instanstiatedNote.creatorObject = this.gameObject;
+        instanstiatedNote.SetNotePosition();
         return instantiatedPin;
     }
     IEnumerator StartTask()
@@ -59,5 +60,19 @@ public class LuteBehaviour : MonoBehaviour
             hit.transform.gameObject.SendMessage("PlayNote");
             //hit.transform.GetComponent<Note>(StartCoroutine(RespawnNote(3f))); // if we click it make it reset as well.
         }
+    }
+    public void AddNoteToQueue(Note note) 
+    {
+        queuedNotes.Add(note);
+        StartCoroutine(QueueNote(note));
+    }
+    IEnumerator QueueNote(Note note)
+    {
+        busy = true;
+        yield return new WaitForSeconds(spawnTime);
+        int randomn2 = Random.Range(1, 4);
+        StartCoroutine(note.RespawnNote(randomn2));
+        queuedNotes.Remove(note);
+        busy = false;
     }
 }

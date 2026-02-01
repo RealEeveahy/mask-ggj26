@@ -15,12 +15,17 @@ public class WheelBehaviour : MonoBehaviour
     public GameObject playerObject = null;
     public Rigidbody2D rigidBody = null;
     public float spinStrength = 100f;
+    public float idleSpeed = 10f;
 
     void Start()
     {
         spawnPosition = transform;
         StartCoroutine(StartTask());
         rigidBody = playerObject.GetComponent<Rigidbody2D>();
+    }
+    private void FixedUpdate()
+    {
+        rigidBody.angularVelocity = idleSpeed;
     }
     public GameObject CreateSword()
     {

@@ -7,11 +7,14 @@ public class Note : MonoBehaviour
     public float sanityCost = 1f;
     public bool busy = false;
     public GameObject creatorObject = null;
+    public LuteBehaviour luteBehaviour = null;
     public float noteSpeed = 1f;
+    SpriteRenderer renderer = null;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        renderer = GetComponentInChildren<SpriteRenderer>();
+       luteBehaviour = creatorObject.GetComponent<LuteBehaviour>();
     }
 
     // Update is called once per frame
@@ -36,7 +39,7 @@ public class Note : MonoBehaviour
         busy = true;
         yield return new WaitForSeconds(timing);
         SetNotePosition();
-        GetComponentInChildren<SpriteRenderer>().enabled = true;
+        ChangeNoteTransparency(1f);
         //rigidObject.linearVelocity = Vector3.zero;
         busy = false;
     }
@@ -45,7 +48,9 @@ public class Note : MonoBehaviour
         if (collision != null)
         {
             if (collision.tag == this.tag) { return; }
-            GetComponentInChildren<SpriteRenderer>().enabled = false;
+            ChangeNoteTransparency(0.5f);
+
+            luteBehaviour.AddNoteToQueue(this);
             GlobalManagement.instance.DecreaseSanity(sanityCost);
             if (busy == false)
             {
@@ -55,5 +60,10 @@ public class Note : MonoBehaviour
 
             }
         }
+    }
+    public void ChangeNoteTransparency(float value)
+    {
+        Color colour = renderer.color;
+        colour.a = value;
     }
 }

@@ -221,8 +221,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef198dd1fafa3af4aa4e33439986f37b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PinColour
-  sprite1: {fileID: 822509364092603275, guid: 4264a30675c82fb43b54a07d8cf05d0a, type: 3}
-  sprite2: {fileID: -7349540808398044246, guid: 0e17605831635644f91f7cefd8b73b93, type: 3}
+  spritelist:
+  - {fileID: -7349540808398044246, guid: 0e17605831635644f91f7cefd8b73b93, type: 3}
+  - {fileID: 822509364092603275, guid: 4264a30675c82fb43b54a07d8cf05d0a, type: 3}
 --- !u!1 &7835534986951738126
 GameObject:
   m_ObjectHideFlags: 0
