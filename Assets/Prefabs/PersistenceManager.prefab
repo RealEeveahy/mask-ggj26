@@ -118,6 +118,15 @@ MonoBehaviour:
   voiceDefault: {fileID: 8300000, guid: 46233371047c3c642840617d6877eef2, type: 3}
   woosh: {fileID: 8300000, guid: ff3219f6c65ad864998d0dadf0b0fb5c, type: 3}
   twang: {fileID: 8300000, guid: 4ee1c4db49811ca47bd0e60daabe9c65, type: 3}
+  hit1: {fileID: 8300000, guid: 60d07dba7495c204f9099c15a23397d8, type: 3}
+  hit2: {fileID: 8300000, guid: 682f2161e99dcde46a16fd5e2472e104, type: 3}
+  hit3: {fileID: 8300000, guid: 443dcd1712b59714fbc26fda40517181, type: 3}
+  hit4: {fileID: 8300000, guid: 4573a60d9858d494c9809e8d46bc65db, type: 3}
+  impact: {fileID: 8300000, guid: a566cdf0b1bc92f4083ddb22c97b7980, type: 3}
+  crack: {fileID: 8300000, guid: fb25d6c6e9ce8d0478ea4e26241010ce, type: 3}
+  GoodEnd: {fileID: 8300000, guid: c47e5391e2f9f21409909ab45085ef47, type: 3}
+  BadEnd: {fileID: 8300000, guid: af7454ff9bab1054db264badde7689ba, type: 3}
+  NeutralEnd: {fileID: 8300000, guid: 912f6dd9634b5e048a3fd8c2610ea46e, type: 3}
   kingVoiceProfile:
   - {fileID: 8300000, guid: 9eb3d49ffd6f20f4296dac39c0bdbd7f, type: 3}
   - {fileID: 8300000, guid: 46233371047c3c642840617d6877eef2, type: 3}

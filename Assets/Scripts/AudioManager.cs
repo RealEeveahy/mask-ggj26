@@ -11,6 +11,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip dt1, dt2;
     public AudioClip intro, voiceDefault;
     public AudioClip woosh, twang;
+    public AudioClip hit1, hit2, hit3, hit4, impact, crack;
+    public AudioClip GoodEnd, BadEnd, NeutralEnd;
 
     public List<AudioClip> kingVoiceProfile = new List<AudioClip>();
     public List<AudioClip> queenVoiceProfile = new List<AudioClip>();
@@ -39,9 +41,17 @@ public class AudioManager : MonoBehaviour
         soundLibrary.Add("Downtime_Loop", dt2);
         soundLibrary.Add("Intro_Theme", intro);
         soundLibrary.Add("Voice", voiceDefault);
-
         soundLibrary.Add("Woosh", woosh);
         soundLibrary.Add("Twang", twang);
+        soundLibrary.Add("HitA", hit1);
+        soundLibrary.Add("HitB", hit2);
+        soundLibrary.Add("HitC", hit3);
+        soundLibrary.Add("HitD", hit4);
+        soundLibrary.Add("Impact", impact);
+        soundLibrary.Add("Crack", crack);
+        soundLibrary.Add("GoodEnd_Theme", GoodEnd);
+        soundLibrary.Add("BandEnd_Theme", BadEnd);
+        soundLibrary.Add("NeutralEnd_Theme", NeutralEnd);
 
         //define voice profiles
         profiles.Add("King", kingVoiceProfile);
@@ -62,15 +72,9 @@ public class AudioManager : MonoBehaviour
     public void PlaySoundEffect(string clipKey)
     {
         AudioClip toPlay;
-        try
-        {
-            toPlay = soundLibrary[clipKey];
-        }
-        catch (Exception ex)
-        {
-            //play the lute if the sound doesnt exist
-            toPlay = soundLibrary["LuteC3"];
-        }
+        toPlay = soundLibrary[clipKey];
+        if(toPlay == null)
+            toPlay = soundLibrary["LuteC3"];  //play the lute if the sound doesnt exist
         sfxSource.PlayOneShot(toPlay);
     }
     public void PlaySoundRandomPitch(string profile)

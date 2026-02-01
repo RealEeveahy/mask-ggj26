@@ -79,6 +79,7 @@ public class GlobalManagement : MonoBehaviour
         if (nextCutscene == null)
         {
             nextCutscene = introduction;
+            audioManager.SetMusic("Downtime_Intro");
         }
         else if (currentDay < days.Count)
         {
@@ -86,15 +87,25 @@ public class GlobalManagement : MonoBehaviour
                 nextCutscene = GoodPerformanceByDay[0];
             else
                 nextCutscene = BadPerformanceByDay[0];
+            audioManager.SetMusic("Downtime_Intro");
         }
         else
         {
             if (CurrentPlayerSanity() > 0.6f)
+            {
                 nextCutscene = GoodEnding;
+                audioManager.SetMusic("GoodEnd_Theme");
+            }
             else if (CurrentPlayerSanity() <= 0.05f)
+            {
                 nextCutscene = BadEnding; // only achievable by losing on the final level
+                audioManager.SetMusic("BandEnd_Theme");
+            }
             else
+            {
                 nextCutscene = NeutralEnding;
+                audioManager.SetMusic("NeutralEnd_Theme");
+            }
         }
 
         gamePhase = Phase.Story;
@@ -103,7 +114,7 @@ public class GlobalManagement : MonoBehaviour
     }
     public void ShowNextDay()
     {
-        if (currentDay == days.Count-1)
+        if (currentDay == days.Count)
         {
             StartCoroutine(LoadScene("CreditScene"));
             gamePhase = Phase.Ending;
@@ -115,8 +126,8 @@ public class GlobalManagement : MonoBehaviour
     {
         FindFirstObjectByType<DayManager>().PlayerDeath();
         ui_mgr.tryAgainButton.gameObject.SetActive(true);
-        audioManager.StopAllAudio();
-
+        PlaySound("Crack", SoundType.SFX); 
+        PlaySound("BadEnd_Theme", SoundType.MUSIC);
     }
     // initiated by the try again button
     public void RestartDay()
@@ -147,8 +158,6 @@ public class GlobalManagement : MonoBehaviour
             GetComponent<TextManagement>().ConversationTextField = FindFirstObjectByType<TMP_Text>();
             if (gamePhase == Phase.Story)
             {
-                audioManager.SetMusic("Downtime_Intro");
-
                 CutsceneManagement c_mgr = FindFirstObjectByType<CutsceneManagement>();
                 c_mgr.scene = nextCutscene;
                 c_mgr.ServeNext();

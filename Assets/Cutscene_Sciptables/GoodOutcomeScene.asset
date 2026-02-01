@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900611bd675aabc4cb823cd20d50ee0b, type: 3}
   m_Name: GoodOutcomeScene
   m_EditorClassIdentifier: Assembly-CSharp::IScene
-  sceneImage: {fileID: 21300000, guid: a6242b1d6e2eaa14b800f6f36a075b3c, type: 3}
+  sceneImage: {fileID: -4963319723522332986, guid: 3ac5dca44db3d5d47afcba0e5e5d47fb, type: 3}
   messages:
   - That was quite the eventful day!
   - The King and Queen seemed to enjoy my performance.
