@@ -111,7 +111,8 @@ MonoBehaviour:
   page1: {fileID: 8300000, guid: 4a1ebfd5bf68c93438704b8af5f33290, type: 3}
   page2: {fileID: 8300000, guid: c668b33c775ee594aa484ec97047cea5, type: 3}
   mg1: {fileID: 8300000, guid: 7a230391bf36dd9429dccf0cc2693d62, type: 3}
-  mg2: {fileID: 8300000, guid: 321d9dd53456ed24dbe56acd678e6ec0, type: 3}
+  mg2: {fileID: 8300000, guid: 41a0a62e348d9984a859c8158051e35f, type: 3}
+  mg2_intro: {fileID: 8300000, guid: 17efa3ac7e73afe42810bf491d31bc6e, type: 3}
   dt1: {fileID: 8300000, guid: 9e6fb5ba4167c7d429359b5b286b831f, type: 3}
   dt2: {fileID: 8300000, guid: 3db4397f4e96c3345893202464088bd0, type: 3}
   intro: {fileID: 8300000, guid: 91efb0ef8350ff14b8c18a8f6ca51f66, type: 3}

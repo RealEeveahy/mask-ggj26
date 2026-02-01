@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900611bd675aabc4cb823cd20d50ee0b, type: 3}
   m_Name: BadEnd1Scene1
   m_EditorClassIdentifier: Assembly-CSharp::IScene
-  sceneImage: {fileID: -5301489426812014704, guid: c2e383bf529be8042a77d74659a968ae, type: 3}
+  sceneImage: {fileID: -230410975628825984, guid: 5d743dd1ec61cb84d931974ed51800a3, type: 3}
   messages:
   - "Why couldn\u2019t I do this right?\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
   - I had been working on this my whole life!

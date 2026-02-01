@@ -18,6 +18,9 @@ public class JuggleBehaviour : MonoBehaviour
     {
         spawnPosition = transform;
         StartCoroutine(StartTask());
+
+        numberOfPins = numberOfPins * task.Difficulty;
+        spawnTime = 1.1f - (task.Difficulty * 0.1f);
     }
     void Update()
     {

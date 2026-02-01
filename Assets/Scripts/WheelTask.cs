@@ -8,6 +8,7 @@ public class WheelTask : ITask
     public float Duration { get; set; }
     public bool TaskComplete { get; set; }
     public GameObject View { get; set; }
+    public int Difficulty { get; set; }
     public WheelTask(float duration)
     {
         Duration = duration;

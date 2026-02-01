@@ -36,6 +36,7 @@ public class GlobalManagement : MonoBehaviour
     public int currentDay = 0;
     public List<Day> days = new List<Day>();
     public Day GetDay() => days[currentDay];
+    public bool badEndActive = false;
     public float CurrentPlayerSanity() => GetComponent<PlayerData>().Sanity;
     private void Awake()
     {
@@ -55,11 +56,10 @@ public class GlobalManagement : MonoBehaviour
         textManager = GetComponent<TextManagement>();
         // define day queue
         days = new List<Day> {
-            new Day(2),
             new Day(3),
             new Day(4),
-            new Day(5),
-            new Day(7)
+            new Day(6),
+            new Day(7),
         };
 
         //run method on start
@@ -91,15 +91,15 @@ public class GlobalManagement : MonoBehaviour
         }
         else
         {
-            if (CurrentPlayerSanity() > 0.6f)
-            {
-                nextCutscene = GoodEnding;
-                audioManager.SetMusic("GoodEnd_Theme");
-            }
-            else if (CurrentPlayerSanity() <= 0.05f)
+            if(badEndActive)
             {
                 nextCutscene = BadEnding; // only achievable by losing on the final level
                 audioManager.SetMusic("BandEnd_Theme");
+            }
+            else if (CurrentPlayerSanity() > 0.7f)
+            {
+                nextCutscene = GoodEnding;
+                audioManager.SetMusic("GoodEnd_Theme");
             }
             else
             {
@@ -124,8 +124,16 @@ public class GlobalManagement : MonoBehaviour
     }
     public void RoundLoss()
     {
-        FindFirstObjectByType<DayManager>().PlayerDeath();
-        ui_mgr.tryAgainButton.gameObject.SetActive(true);
+        DayManager daymgr = FindFirstObjectByType<DayManager>();
+        if (currentDay < days.Count)
+        {
+            daymgr.PlayerDeath();
+            ui_mgr.tryAgainButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            badEndActive = true;
+        }
         PlaySound("Crack", SoundType.SFX); 
         PlaySound("BadEnd_Theme", SoundType.MUSIC);
     }

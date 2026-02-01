@@ -8,5 +8,6 @@ public interface ITask
     float Duration { get; set; }
     float Speed { get; set; }
     string PrefabPath { get; set; }
+    int Difficulty { get; set; }
 }
 

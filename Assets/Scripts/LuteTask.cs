@@ -8,10 +8,12 @@ public class LuteTask : ITask
     public float Speed { get; set; }
     public float Duration { get; set; }
     public bool TaskComplete { get; set; }
+    public int Difficulty { get; set; }
     public GameObject View { get; set; }
     public Action Miss { get; set; }
-    public LuteTask(float duration)
+    public LuteTask(float duration, int diff)
     {
+        Difficulty = diff;
         Duration = duration;
         PrefabPath = "Lute Task";
     }
